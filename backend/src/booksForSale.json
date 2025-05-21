@@ -1,0 +1,37 @@
+[
+  {
+    "titulo": "Este dolor no es mío",
+    "autor": "Mark Wolynn",
+    "descripcion": "Explora cómo el trauma heredado de generaciones anteriores puede afectar nuestras vidas y cómo sanarlo.",
+    "genero": "Autoayuda / Psicología",
+    "imagen": "./assets/este-dolor-15f5e976686286514c16630371783549-640-0.png"
+  },
+  {
+    "titulo": "Hábitos atómicos",
+    "autor": "James Clear",
+    "descripcion": "Una guía práctica para formar buenos hábitos, romper los malos y dominar los comportamientos diarios.",
+    "genero": "Desarrollo personal",
+    "imagen": "./assets/habitos.png"
+  },
+  {
+    "titulo": "Cómo hacer que te pasen cosas buenas",
+    "autor": "Marian Rojas Estapé",
+    "descripcion": "Un enfoque psicológico y científico sobre cómo mejorar la salud mental y atraer bienestar a tu vida.",
+    "genero": "Autoayuda / Psicología",
+    "imagen": "./assets/portada_como-hacer-que-te-pasen-cosas-buenas_marian-rojas-estape_202109211741.jpg"
+  },
+  {
+    "titulo": "El hombre en busca de sentido",
+    "autor": "Viktor E. Frankl",
+    "descripcion": "El psiquiatra narra su experiencia en campos de concentración nazis y presenta su enfoque de la logoterapia.",
+    "genero": "Psicología / Filosofía",
+    "imagen": "./assets/images.jpeg"
+  },
+  {
+    "titulo": "Si lo crees, lo creas",
+    "autor": "Brian Tracy",
+    "descripcion": "Un libro sobre el poder de la mente, la autoconfianza y cómo construir una vida exitosa a través de tus creencias.",
+    "genero": "Motivación / Éxito personal",
+    "imagen": "./assets/plantilla-productos-usados-14-0d227e33eeb868599717421517323406-480-0.png"
+  }
+]

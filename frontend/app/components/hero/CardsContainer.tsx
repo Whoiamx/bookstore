@@ -12,7 +12,9 @@ export const CardsContainer = ({ titulo }: Props) => {
   const [dataBook, setDataBook] = useState<Books[]>([]);
 
   useEffect(() => {
-    fetch("http://localhost:4848/books")
+    fetch("http://localhost:4848/books", {
+      cache: "no-store",
+    })
       .then((response) => response.json())
       .then((data) => setDataBook(data))
       .catch((err) => console.log(err));

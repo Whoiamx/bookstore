@@ -33,5 +33,26 @@
     "descripcion": "Un libro sobre el poder de la mente, la autoconfianza y cómo construir una vida exitosa a través de tus creencias.",
     "genero": "Motivación / Éxito personal",
     "imagen": "/assets/plantilla-productos-usados-14-0d227e33eeb868599717421517323406-480-0.png"
+  },
+  {
+    "titulo": "El Eternauta",
+    "autor": "Héctor Germán Oesterheld",
+    "descripcion": "El Eternauta es la primera novela gráfica en español y una de las más importantes del mundo hispanoamericano. Publicada originalmente en Argentina entre 1957 y 1959 en la revista Hora Cero Semanal.",
+    "genero": "Ciencia ficción / Novela gráfica",
+    "imagen": "/assets/eternauta.jpg"
+  },
+  {
+    "titulo": "Deja de ser tú",
+    "autor": "Joe Dispenza",
+    "descripcion": "Una guía sobre cómo cambiar tus pensamientos y creencias para transformar tu realidad, basada en neurociencia y física cuántica.",
+    "genero": "Motivación / Desarrollo personal",
+    "imagen": "/assets/dejadesertu.jpg"
+  },
+  {
+    "titulo": "El poder del ahora",
+    "autor": "Eckhart Tolle",
+    "descripcion": "Una obra espiritual que enseña la importancia de vivir en el presente para alcanzar la paz interior y el bienestar.",
+    "genero": "Espiritualidad / Desarrollo personal",
+    "imagen": "/assets/elpoderdelahora.jpg"
   }
 ]

@@ -8,7 +8,6 @@ const port = 4848;
 
 app.use(cors());
 
-// Aquí servís la carpeta assets que está en src/assets
 app.use("/assets", express.static(path.join(__dirname, "src", "assets")));
 
 app.get("/books", (req, res) => {

@@ -17,10 +17,10 @@ export const BookCard = ({
         </p>
         <p className="text-sm text-gray-800 mb-3">{descripcion}</p>
         <div className="flex flex-col gap-3">
-          <button className="text-xs text-white bg-blue-700 px-2 py-1 rounded ">
+          <button className="text-sm text-white bg-green-700 px-2 py-1 rounded ">
             Agregar al carrito
           </button>
-          <span className="text-xs text-white bg-blue-500 px-2 py-1 rounded">
+          <span className="text-xs text-center text-white bg-blue-500  py-1 rounded">
             {genero}
           </span>
         </div>

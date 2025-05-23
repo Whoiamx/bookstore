@@ -14,9 +14,14 @@ export const BookCard = ({
         <h2 className="text-lg font-semibold mb-1">{titulo}</h2>
         <p className="text-sm text-gray-600 mb-2">por {autor}</p>
         <p className="text-sm text-gray-800 mb-3">{descripcion}</p>
-        <span className="text-xs text-white bg-blue-500 px-2 py-1 rounded">
-          {genero}
-        </span>
+        <div className="flex flex-col gap-3">
+          <button className="text-xs text-white bg-blue-700 px-2 py-1 rounded ">
+            Agregar al carrito
+          </button>
+          <span className="text-xs text-white bg-blue-500 px-2 py-1 rounded">
+            {genero}
+          </span>
+        </div>
       </div>
     </div>
   );

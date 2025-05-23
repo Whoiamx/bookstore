@@ -8,7 +8,12 @@ export const Navbar = () => {
   return (
     <>
       <div className=" flex items-center p-3 justify-around bg-blue-400">
-        <Image src="/Logo El Ateneo.jpg" alt="logo" width={200} height={200} />
+        <div className="flex items-center justify-center gap-2">
+          <h1 className="font-extrabold text-3xl">
+            Book<span className="text-blue-900">S</span>tore
+          </h1>
+          <Image src="/libros.png" alt="logo" width={50} height={50} />
+        </div>
         <div>
           <input
             className="bg-white rounded-b-sm p-2 w-3xl h-10"

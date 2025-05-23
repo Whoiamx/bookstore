@@ -12,7 +12,9 @@ export const BookCard = ({
       <img src={imagen} alt={titulo} className="w-full h-48 object-cover" />
       <div className="p-4">
         <h2 className="text-lg font-semibold mb-1">{titulo}</h2>
-        <p className="text-sm text-gray-600 mb-2">por {autor}</p>
+        <p className="text-sm text-gray-600 mb-2">
+          por <i>{autor}</i>
+        </p>
         <p className="text-sm text-gray-800 mb-3">{descripcion}</p>
         <div className="flex flex-col gap-3">
           <button className="text-xs text-white bg-blue-700 px-2 py-1 rounded ">

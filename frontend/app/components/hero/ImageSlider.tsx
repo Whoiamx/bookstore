@@ -20,7 +20,7 @@ const ImageSlider = () => {
   };
 
   return (
-    <div className="flex items-center justify-center gap-4 w-full max-w-screen-xl mx-auto mb-8">
+    <div className="flex items-center justify-center gap-4 w-full max-w-screen-xl mx-auto mb-8 p-4">
       <button
         onClick={prevSlide}
         className="text-4xl text-gray-600 hover:text-black transition"

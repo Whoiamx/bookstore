@@ -55,6 +55,12 @@ export default function Page({ params }: Props) {
             <p className="text-gray-700 text-sm mb-4 flex-1">
               {product.descripcion}
             </p>
+            <input
+              className="border-black border-2 w-20 mb-2 text-center"
+              min={1}
+              max={product.cantidad}
+              type="number"
+            />
             <button className="text-xs bg-green-700 text-white w-44 mb-4 text-nowrap h-10 rounded-sm transition-all shadow-sm font-semibold uppercase tracking-wide">
               Agregar al carrito
             </button>
@@ -66,7 +72,9 @@ export default function Page({ params }: Props) {
             </div>
             <div className="flex justify-between items-center mt-auto pt-4 border-t border-gray-200">
               <span className="text-lg font-bold text-emerald-600">
-                Precio: ${product.precio.toLocaleString("es-AR")}
+                Precio: $
+                {product.precio !== undefined &&
+                  product.precio.toLocaleString("es-AR")}
               </span>
               <span
                 className={`text-sm font-medium ${

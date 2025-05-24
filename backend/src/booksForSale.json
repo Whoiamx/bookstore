@@ -6,7 +6,9 @@
     "genero": "Autoayuda / Psicología",
     "imagen": "/assets/este-dolor-15f5e976686286514c16630371783549-640-0.png",
     "categoria": "autoayuda",
-    "slug": "este-dolor-no-es-mio"
+    "slug": "este-dolor-no-es-mio",
+    "cantidad": 10,
+    "precio": 18500
   },
   {
     "titulo": "Hábitos atómicos",
@@ -15,7 +17,9 @@
     "genero": "Desarrollo personal",
     "imagen": "/assets/habitos.png",
     "categoria": "autoayuda",
-    "slug": "habitos-atomicos"
+    "slug": "habitos-atomicos",
+    "cantidad": 8,
+    "precio": 21000
   },
   {
     "titulo": "Cómo hacer que te pasen cosas buenas",
@@ -24,7 +28,9 @@
     "genero": "Autoayuda / Psicología",
     "imagen": "/assets/portada_como-hacer-que-te-pasen-cosas-buenas_marian-rojas-estape_202109211741.jpg",
     "categoria": "autoayuda",
-    "slug": "como-hacer-que-te-pasen-cosas-buenas"
+    "slug": "como-hacer-que-te-pasen-cosas-buenas",
+    "cantidad": 12,
+    "precio": 17000
   },
   {
     "titulo": "El hombre en busca de sentido",
@@ -33,7 +39,9 @@
     "genero": "Psicología / Filosofía",
     "imagen": "/assets/images.jpeg",
     "categoria": "psicologia",
-    "slug": "el-hombre-en-busca-de-sentido"
+    "slug": "el-hombre-en-busca-de-sentido",
+    "cantidad": 15,
+    "precio": 16000
   },
   {
     "titulo": "Si lo crees, lo creas",
@@ -42,7 +50,9 @@
     "genero": "Motivación / Éxito personal",
     "imagen": "/assets/plantilla-productos-usados-14-0d227e33eeb868599717421517323406-480-0.png",
     "categoria": "autoayuda",
-    "slug": "si-lo-crees-lo-creas"
+    "slug": "si-lo-crees-lo-creas",
+    "cantidad": 7,
+    "precio": 14000
   },
   {
     "titulo": "El Eternauta",
@@ -51,7 +61,9 @@
     "genero": "Ciencia ficción / Novela gráfica",
     "imagen": "/assets/eternauta.jpg",
     "categoria": "ficcion-literatura",
-    "slug": "el-eternauta"
+    "slug": "el-eternauta",
+    "cantidad": 5,
+    "precio": 25000
   },
   {
     "titulo": "Deja de ser tú",
@@ -60,7 +72,9 @@
     "genero": "Motivación / Desarrollo personal",
     "imagen": "/assets/dejadesertu.jpg",
     "categoria": "autoayuda",
-    "slug": "deja-de-ser-tu"
+    "slug": "deja-de-ser-tu",
+    "cantidad": 9,
+    "precio": 19500
   },
   {
     "titulo": "El poder del ahora",
@@ -69,6 +83,8 @@
     "genero": "Espiritualidad / Desarrollo personal",
     "imagen": "/assets/elpoderdelahora.jpg",
     "categoria": "autoayuda",
-    "slug": "el-poder-del-ahora"
+    "slug": "el-poder-del-ahora",
+    "cantidad": 11,
+    "precio": 18000
   }
 ]

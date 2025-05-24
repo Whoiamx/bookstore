@@ -1,6 +1,5 @@
 "use client";
 
-import { Footer } from "../footer/Footer";
 import { BannerImages } from "./BannerImages";
 import { CardsContainer } from "./CardsContainer";
 import ImageSlider from "./ImageSlider";
@@ -31,7 +30,6 @@ export const Hero = () => {
           <CardsContainer titulo="Novedades" />
         </div>
       </div>
-      <Footer />
     </>
   );
 };

@@ -6,4 +6,6 @@ export interface Books {
   imagen: string;
   categoria?: string;
   slug?: string;
+  cantidad?: number;
+  precio?: number;
 }

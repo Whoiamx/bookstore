@@ -3,15 +3,18 @@ import { NavbarItems } from "./NavbarItems";
 import { FaUser } from "react-icons/fa";
 import { BsWhatsapp } from "react-icons/bs";
 import { LuShoppingCart } from "react-icons/lu";
+import Link from "next/link";
 
 export const Navbar = () => {
   return (
     <>
       <div className=" flex items-center p-3 justify-around bg-blue-400">
         <div className="flex items-center justify-center gap-2">
-          <h1 className="font-extrabold text-3xl">
-            Book<span className="text-blue-900">S</span>tore
-          </h1>
+          <Link href={"/"}>
+            <h1 className="font-extrabold text-3xl">
+              Book<span className="text-blue-900">S</span>tore
+            </h1>
+          </Link>
           <Image src="/libros.png" alt="logo" width={50} height={50} />
         </div>
         <div>

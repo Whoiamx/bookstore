@@ -1,7 +1,12 @@
+import { Navbar } from "@/app/components/navbar/Navbar";
+
 export default function () {
   return (
-    <div>
-      <h1>Checkout Page</h1>
-    </div>
+    <>
+      <Navbar />
+      <div>
+        <h1>Checkout Page</h1>
+      </div>
+    </>
   );
 }

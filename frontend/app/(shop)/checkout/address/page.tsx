@@ -1,7 +1,13 @@
+import { AddressForm } from "@/app/components/cart/AddressForm";
+import { Navbar } from "@/app/components/navbar/Navbar";
+
 export default function () {
   return (
-    <div>
-      <h1>Address Page</h1>
-    </div>
+    <>
+      <Navbar />
+      <div className="p-12">
+        <AddressForm />
+      </div>
+    </>
   );
 }

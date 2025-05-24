@@ -20,7 +20,7 @@ export const Footer = () => {
               <Link href="#">Retiro en Sucursales</Link>
             </li>
             <li>
-              <Link href="#">Puntos eXtra!</Link>
+              <Link href="#">Puntos Extra</Link>
             </li>
             <li>
               <Link href="#">Gift Card</Link>

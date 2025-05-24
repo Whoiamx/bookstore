@@ -55,7 +55,6 @@ export default function ({ params }: Props) {
           </div>
         </div>
       </div>
-      {filterBooksCategory.length ? <Footer /> : null}
     </>
   );
 }

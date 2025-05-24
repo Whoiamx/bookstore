@@ -86,5 +86,38 @@
     "slug": "el-poder-del-ahora",
     "cantidad": 11,
     "precio": 18000
+  },
+  {
+    "titulo": "El monstruo de colores",
+    "autor": "Anna Llenas",
+    "descripcion": "Un cuento infantil que ayuda a los niños a identificar y gestionar sus emociones de manera sencilla y visual.",
+    "genero": "Infantil / Emociones",
+    "imagen": "/assets/elmonstruo.jpg",
+    "categoria": "infantil",
+    "slug": "el-monstruo-de-colores",
+    "cantidad": 14,
+    "precio": 13000
+  },
+  {
+    "titulo": "Padre Rico, Padre Pobre",
+    "autor": "Robert T. Kiyosaki",
+    "descripcion": "Un clásico de educación financiera que enseña las diferencias entre cómo piensan los ricos y los pobres sobre el dinero.",
+    "genero": "Finanzas / Negocios",
+    "imagen": "/assets/padrerico.png",
+    "categoria": "negocios-cseconomicas",
+    "slug": "padre-rico-padre-pobre",
+    "cantidad": 10,
+    "precio": 20000
+  },
+  {
+    "titulo": "Roba como un artista",
+    "autor": "Austin Kleon",
+    "descripcion": "Una guía inspiradora y accesible para potenciar la creatividad, encontrar tu estilo y aprender de otros artistas.",
+    "genero": "Arte / Creatividad",
+    "imagen": "/assets/robacomo.jpg",
+    "categoria": "arte",
+    "slug": "roba-como-un-artista",
+    "cantidad": 6,
+    "precio": 16500
   }
 ]

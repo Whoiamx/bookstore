@@ -1,5 +1,3 @@
-// app/login/page.tsx
-
 import AuthLayout from "../layout";
 
 export default function LoginPage() {

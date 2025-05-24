@@ -1,1 +1,5 @@
-//TODO: Create Store with books with Zustand
+import { create } from "zustand";
+
+const useBookStore = create((set) => ({
+  cart: [],
+}));

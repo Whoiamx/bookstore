@@ -4,4 +4,5 @@ export interface Books {
   descripcion: string;
   genero: string;
   imagen: string;
+  categoria?: string;
 }

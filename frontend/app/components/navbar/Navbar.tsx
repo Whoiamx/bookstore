@@ -25,7 +25,9 @@ export const Navbar = () => {
           />
         </div>
         <div className="flex gap-8 justify-around items-center">
-          <FaUser style={{ fontSize: 25, cursor: "pointer" }} />
+          <Link href={"/auth/login"}>
+            <FaUser style={{ fontSize: 25, cursor: "pointer" }} />
+          </Link>
           <BsWhatsapp style={{ fontSize: 25, cursor: "pointer" }} />
           <Link href={"/cart"}>
             <LuShoppingCart style={{ fontSize: 25, cursor: "pointer" }} />

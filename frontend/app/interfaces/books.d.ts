@@ -5,4 +5,5 @@ export interface Books {
   genero: string;
   imagen: string;
   categoria?: string;
+  slug?: string;
 }

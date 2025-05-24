@@ -29,6 +29,7 @@ export const CardsContainer = ({ titulo }: Props) => {
             autor={item.autor}
             genero={item.genero}
             imagen={`http://localhost:4848${item.imagen}`}
+            slug={item.slug}
           />
         ))}
       </div>

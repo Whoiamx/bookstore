@@ -8,12 +8,13 @@ export const BookCard = ({
   descripcion,
   genero,
   imagen,
+  slug,
 }: Books) => {
   return (
     <div className="bg-white shadow-lg rounded-2xl overflow-hidden w-72 hover:shadow-xl transition-shadow duration-300">
       <Link
         className="hover:opacity-90 transition-opacity"
-        href={`/products/${titulo}`}
+        href={`/product/${slug}`}
         target="_blank"
       >
         <Image
@@ -33,7 +34,7 @@ export const BookCard = ({
 
           <Link
             className="text-lg font-bold text-gray-800 hover:text-blue-500 transition-colors mt-2 block"
-            href={`/products/${titulo}`}
+            href={`/product/${slug}`}
             target="_blank"
           >
             {titulo}

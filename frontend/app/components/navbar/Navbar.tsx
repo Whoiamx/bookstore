@@ -28,7 +28,12 @@ export const Navbar = () => {
           <Link href={"/auth/login"}>
             <FaUser style={{ fontSize: 25, cursor: "pointer" }} />
           </Link>
-          <BsWhatsapp style={{ fontSize: 25, cursor: "pointer" }} />
+          <Link
+            href={"https://api.whatsapp.com/send/?phone=5491163099115"}
+            target="_blank"
+          >
+            <BsWhatsapp style={{ fontSize: 25, cursor: "pointer" }} />
+          </Link>
           <Link href={"/cart"}>
             <LuShoppingCart style={{ fontSize: 25, cursor: "pointer" }} />
           </Link>

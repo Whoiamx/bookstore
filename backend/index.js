@@ -22,10 +22,6 @@ app.get("/books", async (req, res) => {
 
   const limit = parseInt(query.limit);
 
-  if (limit === undefined || isNaN(limit)) {
-    throw new Error(" parámetro limit inválido o ausente");
-  }
-
   if (limit) {
     const librosLimit = await prisma.libro.findMany({
       take: limit,

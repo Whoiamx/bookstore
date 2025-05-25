@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import "./globals.css";
-import { Footer } from "./components/footer/Footer";
 
 const montserrat = Montserrat({
   weight: ["500", "700"],
@@ -11,8 +10,11 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
-  title: "Book Store",
+  title: "Book Store - Todos los libros en un solo lugar",
   description: "Tu libreria de confianza",
+  icons: {
+    icon: "/icon.png",
+  },
 };
 
 export default function RootLayout({

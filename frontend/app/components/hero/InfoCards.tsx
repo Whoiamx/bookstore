@@ -5,7 +5,7 @@ const infoItems = [
       "Envíos en el día. Envío gratis en compras superiores a $35.000",
   },
   {
-    title: "Puntos eXtra!",
+    title: "Puntos Extra!",
     description: "Sumá puntos para canjear en nuestras sucursales",
   },
   {

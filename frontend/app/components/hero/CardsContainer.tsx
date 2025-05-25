@@ -11,6 +11,15 @@ interface Props {
 export const CardsContainer = ({ titulo }: Props) => {
   const [dataBook, setDataBook] = useState<Books[]>([]);
 
+  const shuffleArray = (array: Books[]) => {
+    return array
+      .map((value) => ({ value, sort: Math.random() }))
+      .sort((a, b) => a.sort - b.sort)
+      .map(({ value }) => value);
+  };
+
+  const randomBooks = shuffleArray(dataBook).slice(0, 8);
+
   useEffect(() => {
     fetch("http://localhost:4848/books", {})
       .then((response) => response.json())
@@ -21,7 +30,7 @@ export const CardsContainer = ({ titulo }: Props) => {
     <div className="flex flex-col gap-4">
       <h2 className="font-semibold text-xl">{titulo}</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        {dataBook.map((item, index) => (
+        {randomBooks.map((item, index) => (
           <BookCard
             key={index}
             titulo={item.titulo}

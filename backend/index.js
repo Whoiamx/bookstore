@@ -10,13 +10,38 @@ const prisma = new PrismaClient();
 app.use(cors());
 app.use("/assets", express.static(path.join(__dirname, "src", "assets")));
 
+const shuffleArray = (array) => {
+  return array
+    .map((value) => ({ value, sort: Math.random() }))
+    .sort((a, b) => a.sort - b.sort)
+    .map(({ value }) => value);
+};
+
 app.get("/books", async (req, res) => {
-  try {
-    const libros = await prisma.libro.findMany();
-    res.json(libros);
-  } catch (error) {
-    console.error("Error al obtener libros:", error);
-    res.status(500).json({ error: "Error al obtener libros" });
+  const { query } = req;
+
+  const limit = parseInt(query.limit);
+
+  if (limit === undefined || isNaN(limit)) {
+    throw new Error(" parámetro limit inválido o ausente");
+  }
+
+  if (limit) {
+    const librosLimit = await prisma.libro.findMany({
+      take: limit,
+    });
+
+    const randomBooks = shuffleArray(librosLimit);
+
+    res.json(randomBooks);
+  } else {
+    try {
+      const libros = await prisma.libro.findMany();
+      res.json(libros);
+    } catch (error) {
+      console.error("Error al obtener libros:", error);
+      res.status(500).json({ error: "Error al obtener libros" });
+    }
   }
 });
 

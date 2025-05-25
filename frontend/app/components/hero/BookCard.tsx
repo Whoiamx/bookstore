@@ -9,6 +9,7 @@ export const BookCard = ({
   genero,
   imagen,
   slug,
+  precio,
 }: Books) => {
   return (
     <div className="bg-white shadow-lg rounded-2xl overflow-hidden w-72 hover:shadow-xl transition-shadow duration-300">
@@ -46,6 +47,9 @@ export const BookCard = ({
 
           <p className="text-sm text-gray-700 line-clamp-3 mt-2">
             {descripcion}
+          </p>
+          <p className="pt-2 text-base text-gray-700 line-clamp-3 mt-2">
+            Precio: <b>${precio}</b>
           </p>
         </div>
 

@@ -6,6 +6,12 @@ export const NavbarItems = () => {
       <ul className="flex  gap-5 text-gray-500  ">
         <li>
           {" "}
+          <Link className="hover:text-black text-sm" href={"/all"}>
+            Ver Todo
+          </Link>{" "}
+        </li>
+        <li>
+          {" "}
           <Link
             className="hover:text-black text-sm"
             href={"/category/autoayuda"}

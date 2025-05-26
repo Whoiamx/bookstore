@@ -8,4 +8,11 @@ Books Store es una aplicación fullstack que clona una tienda de libros online. 
 2. Instalar dependencias `npm install`
 3. Correr el proyecto `npm run dev `
 
+**_ En el backend en desarrollo _**
+
+4. Prender el contenedor de Docker
+5. Ejecutar `docker compose up -d` para levantar la base de datos de desarrollo
+6. Levantar la base de datos postgres en Table Plus de desarrollo
+7. Correr las migraciones de Prisma (en caso de que agreguemos modelos de tablas de la base de datos) `npx prisma migrate dev --name init`
+
 # Correr en prod

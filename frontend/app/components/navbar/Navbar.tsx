@@ -6,6 +6,7 @@ import { BsWhatsapp } from "react-icons/bs";
 import { LuShoppingCart } from "react-icons/lu";
 import Link from "next/link";
 import { useBookStore } from "@/app/store/store";
+import { LabelCounter } from "@/app/ui/LabelCounter";
 
 export const Navbar = () => {
   const lengthCart = useBookStore((state) => state.cart);
@@ -48,9 +49,7 @@ export const Navbar = () => {
                 style={{ color: "white", fontSize: 25, cursor: "pointer" }}
               />
             </Link>
-            <p className="bg-blue-200 w-6 p-1.5 rounded-2xl  text-center text-lg font-extrabold">
-              {lengthCart.length}
-            </p>
+            <LabelCounter />
           </div>
         </div>
       </div>

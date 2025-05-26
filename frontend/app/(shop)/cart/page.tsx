@@ -7,7 +7,6 @@ import { useBookStore } from "@/app/store/store";
 
 export default function CartPage() {
   const booksInTheCart = useBookStore((state) => state.cart);
-  console.log(booksInTheCart);
 
   return (
     <>
@@ -17,7 +16,15 @@ export default function CartPage() {
         <h1 className="text-3xl font-bold mb-6">Tu Carrito</h1>
 
         <div className="grid grid-cols-1 gap-6">
-          <CartContainer productos={booksInTheCart} />
+          {booksInTheCart.length !== 0 ? (
+            <CartContainer productos={booksInTheCart} />
+          ) : (
+            <div>
+              <p>
+                Lo siento! :( No se encontraron productos agregados al carrito
+              </p>
+            </div>
+          )}
         </div>
       </div>
     </>

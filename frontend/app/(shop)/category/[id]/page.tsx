@@ -22,10 +22,6 @@ export default function ({ params }: Props) {
     (book) => book.categoria === id
   );
 
-  // if (id === "abc") {
-  //   notFound();
-  // }
-
   useEffect(() => {
     fetch("http://localhost:4848/books", {})
       .then((response) => response.json())
@@ -49,6 +45,7 @@ export default function ({ params }: Props) {
                 autor={item.autor}
                 descripcion={item.descripcion}
                 genero={item.genero}
+                precio={item.precio}
                 imagen={`http://localhost:4848${item.imagen}`}
               />
             ))}

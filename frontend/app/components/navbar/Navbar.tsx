@@ -1,18 +1,22 @@
+"use client";
 import Image from "next/image";
 import { NavbarItems } from "./NavbarItems";
 import { FaUser } from "react-icons/fa";
 import { BsWhatsapp } from "react-icons/bs";
 import { LuShoppingCart } from "react-icons/lu";
 import Link from "next/link";
+import { useBookStore } from "@/app/store/store";
 
 export const Navbar = () => {
+  const lengthCart = useBookStore((state) => state.cart);
+
   return (
     <>
       <div className=" flex items-center p-3 justify-around bg-[#002447]">
         <div className="flex items-center justify-center gap-2">
           <Link href={"/"}>
             <h1 className=" text-white font-extrabold text-3xl">
-              Book<span className="text-blue-900">S</span>tore
+              Book<span className="text-blue-300">S</span>tore
             </h1>
           </Link>
           <Image src="/libros.png" alt="logo" width={50} height={50} />
@@ -45,7 +49,7 @@ export const Navbar = () => {
               />
             </Link>
             <p className="bg-blue-200 w-6 p-1.5 rounded-2xl  text-center text-lg font-extrabold">
-              1
+              {lengthCart.length}
             </p>
           </div>
         </div>

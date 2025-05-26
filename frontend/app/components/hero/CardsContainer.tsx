@@ -31,6 +31,7 @@ export const CardsContainer = ({ titulo }: Props) => {
             imagen={`http://localhost:4848${item.imagen}`}
             slug={item.slug}
             precio={item.precio}
+            cantidad={item.cantidad}
           />
         ))}
       </div>

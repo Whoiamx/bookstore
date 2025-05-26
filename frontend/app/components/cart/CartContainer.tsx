@@ -15,18 +15,16 @@ export const CartContainer = ({ productos }: Props) => {
 
   return (
     <div className="w-full flex flex-col md:flex-row gap-8">
-      {/* Columna izquierda: lista de productos */}
       <div className="flex-1 space-y-6">
         {productos.map((producto, i) => (
           <CartItem key={i} {...producto} />
         ))}
       </div>
 
-      {/* Columna derecha: resumen de orden */}
       <div className="w-full md:w-[350px] bg-gray-100 p-6 rounded-lg shadow-md h-fit">
         <h2 className="text-xl font-semibold mb-4">Resumen de tu orden</h2>
 
-        <div className="space-y-3 text-sm">
+        <div className="space-y-3 text-sm ">
           {productos.map((item, i) => (
             <div
               key={i}
@@ -34,16 +32,18 @@ export const CartContainer = ({ productos }: Props) => {
             >
               <div>
                 <p className="font-medium">{item.titulo}</p>
-                <p className="text-gray-500 text-xs">
-                  Cantidad: {item.cantidad}
+                <p className="text-gray-500 text-xs pt-2">
+                  <i>Cantidad:</i> {item.cantidad}
                 </p>
               </div>
-              <p className="text-right">
-                ${item.precio?.toLocaleString()} x {item.cantidad} <br />
-                <span className="font-semibold">
+              <div className="flex flex-col gap-2">
+                <p className="text-right text-xs ">
+                  ${item.precio?.toLocaleString()} x {item.cantidad} <br />
+                </p>
+                <span className="font-semibold ">
                   ${(item.precio! * item.cantidad!).toLocaleString()}
                 </span>
-              </p>
+              </div>
             </div>
           ))}
         </div>

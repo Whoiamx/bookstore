@@ -1,5 +1,28 @@
 import { create } from "zustand";
+import { Books } from "../interfaces/books";
 
-const useBookStore = create((set) => ({
+interface StateStore {
+  cart: Books[];
+  addToCart: (book: Books) => void;
+}
+
+export const useBookStore = create<StateStore>((set) => ({
   cart: [],
+  addToCart: (book: Books) => {
+    set((state) => {
+      const existingBook = state.cart.find((item) => item.slug === book.slug);
+
+      if (existingBook) {
+        const updatedCart = state.cart.map((item) =>
+          item.slug === book.slug
+            ? { ...item, cantidad: (item.cantidad || 1) + 1 }
+            : item
+        );
+
+        return { cart: updatedCart };
+      } else {
+        return { cart: [...state.cart, { ...book, cantidad: 1 }] };
+      }
+    });
+  },
 }));

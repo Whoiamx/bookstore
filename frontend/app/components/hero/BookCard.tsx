@@ -1,4 +1,5 @@
 import { Books } from "@/app/interfaces/books";
+import { useBookStore } from "@/app/store/store";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -10,7 +11,23 @@ export const BookCard = ({
   imagen,
   slug,
   precio,
+  cantidad,
 }: Books) => {
+  const addBookToCart = useBookStore((state) => state.addToCart);
+
+  const addBookToCartInStore = () => {
+    const bookToAdd = {
+      titulo,
+      autor,
+      descripcion,
+      genero,
+      slug,
+      imagen,
+      precio,
+    };
+    addBookToCart(bookToAdd);
+  };
+
   return (
     <div className="bg-white shadow-lg rounded-2xl overflow-hidden w-72 hover:shadow-xl transition-shadow duration-300">
       <Link
@@ -54,7 +71,10 @@ export const BookCard = ({
         </div>
 
         <div className="mt-4 flex justify-center">
-          <button className="text-xs bg-green-600 hover:bg-green-700 text-white px-4 py-1 rounded-full transition-all shadow-sm font-semibold uppercase tracking-wide">
+          <button
+            onClick={() => addBookToCartInStore()}
+            className="text-xs bg-green-600 hover:bg-green-700 text-white px-4 py-1 rounded-full transition-all shadow-sm font-semibold uppercase tracking-wide"
+          >
             + agregar
           </button>
         </div>

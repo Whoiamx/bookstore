@@ -13,16 +13,20 @@ export const useBookStore = create<StateStore>((set) => ({
     set((state) => {
       const existingBook = state.cart.find((item) => item.slug === book.slug);
 
+      const incomingCantidad = book.cantidad ?? 1;
+
       if (existingBook) {
         const updatedCart = state.cart.map((item) =>
           item.slug === book.slug
-            ? { ...item, cantidad: (item.cantidad || 1) + 1 }
+            ? { ...item, cantidad: (item.cantidad ?? 1) + incomingCantidad }
             : item
         );
 
         return { cart: updatedCart };
       } else {
-        return { cart: [...state.cart, { ...book, cantidad: 1 }] };
+        return {
+          cart: [...state.cart, { ...book, cantidad: incomingCantidad }],
+        };
       }
     });
   },

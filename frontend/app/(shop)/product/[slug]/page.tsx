@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { Books } from "@/app/interfaces/books";
 import { Navbar } from "@/app/components/navbar/Navbar";
 import Image from "next/image";
+import { useBookStore } from "@/app/store/store";
 
 interface Props {
   params: {
@@ -15,7 +16,26 @@ interface Props {
 export default function Page({ params }: Props) {
   const { slug } = params;
   const [product, setProduct] = useState<Books | null>(null);
+  const [quantityToBuy, setQuantityToBuy] = useState(1);
   const router = useRouter();
+
+  const addBookToCart = useBookStore((state) => state.addToCart);
+
+  const addBookToCartInStore = () => {
+    const bookToAdd: Books = {
+      titulo: product!.titulo!,
+      autor: product!.autor!,
+      descripcion: product!.descripcion!,
+      genero: product!.genero!,
+      slug: product!.slug!,
+      imagen: product!.imagen!,
+      precio: product!.precio!,
+      cantidad: quantityToBuy,
+    };
+
+    console.log(bookToAdd.cantidad);
+    addBookToCart(bookToAdd);
+  };
 
   useEffect(() => {
     fetch("http://localhost:4848/books")
@@ -57,11 +77,15 @@ export default function Page({ params }: Props) {
             </p>
             <input
               className="border-black border-2 w-20 mb-2 text-center"
-              min={1}
               max={product.cantidad}
+              min={1}
               type="number"
+              onChange={(event) => setQuantityToBuy(Number(event.target.value))}
             />
-            <button className="text-xs bg-green-700 text-white w-44 mb-4 text-nowrap h-10 rounded-sm transition-all shadow-sm font-semibold uppercase tracking-wide">
+            <button
+              onClick={() => addBookToCartInStore()}
+              className=" cursor-pointer text-xs bg-green-700 text-white w-44 mb-4 text-nowrap h-10 rounded-sm transition-all shadow-sm font-semibold uppercase tracking-wide"
+            >
               Agregar al carrito
             </button>
 

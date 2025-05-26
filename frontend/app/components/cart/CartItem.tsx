@@ -63,6 +63,7 @@ export default function CartItem({
             min={1}
             defaultValue={cantidad}
             className="w-16 border rounded px-2 py-1"
+            readOnly
           />
           <p className="text-sm text-gray-700 ml-4">
             Subtotal: ${(precio * cantidad).toLocaleString()}

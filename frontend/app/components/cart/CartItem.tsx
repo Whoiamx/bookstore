@@ -1,5 +1,7 @@
 // components/CartItem.tsx
 
+import { useBookStore } from "@/app/store/store";
+
 interface CartItemProps {
   titulo: string;
   autor: string;
@@ -9,6 +11,7 @@ interface CartItemProps {
   categoria?: string;
   cantidad?: number;
   precio?: number;
+  slug?: string;
 }
 
 export default function CartItem({
@@ -20,7 +23,23 @@ export default function CartItem({
   categoria,
   cantidad = 1,
   precio = 0,
+  slug,
 }: CartItemProps) {
+  const deleteBook = useBookStore((state) => state.deleteBookCart);
+
+  const handleDeleteBoook = () => {
+    const bookToDelete = {
+      titulo,
+      autor,
+      descripcion,
+      genero,
+      slug,
+      imagen,
+      precio,
+    };
+    deleteBook(bookToDelete);
+  };
+
   return (
     <div className="flex flex-col md:flex-row items-start bg-white rounded-xl shadow-md p-4">
       <img
@@ -48,7 +67,10 @@ export default function CartItem({
           <p className="text-sm text-gray-700 ml-4">
             Subtotal: ${(precio * cantidad).toLocaleString()}
           </p>
-          <button className="ml-auto text-red-500 hover:underline text-sm">
+          <button
+            onClick={() => handleDeleteBoook()}
+            className=" cursor-pointer ml-auto text-red-500 hover:underline text-sm"
+          >
             Eliminar
           </button>
         </div>

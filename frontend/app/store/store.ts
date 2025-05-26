@@ -4,6 +4,7 @@ import { Books } from "../interfaces/books";
 interface StateStore {
   cart: Books[];
   addToCart: (book: Books) => void;
+  deleteBookCart: (book: Books) => void;
 }
 
 export const useBookStore = create<StateStore>((set) => ({
@@ -23,6 +24,14 @@ export const useBookStore = create<StateStore>((set) => ({
       } else {
         return { cart: [...state.cart, { ...book, cantidad: 1 }] };
       }
+    });
+  },
+
+  deleteBookCart: (book: Books) => {
+    set((state) => {
+      const filterCart = state.cart.filter((item) => item.slug != book.slug);
+
+      return { cart: filterCart };
     });
   },
 }));

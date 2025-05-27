@@ -114,7 +114,7 @@ export const BookCard = ({
           <div className="mt-4">
             <button
               onClick={addBookToCartInStore}
-              className="cursor-pointer w-full text-xs bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-full transition-all shadow-sm font-semibold uppercase tracking-wide"
+              className="cursor-pointer w-full text-xs hover:bg-[#40D3E7] hover:text-[#002447] bg-[#002447] text-white px-4 py-2 rounded-full transition-all shadow-sm font-semibold uppercase tracking-wide"
             >
               + agregar
             </button>

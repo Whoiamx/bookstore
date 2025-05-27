@@ -21,7 +21,6 @@ export const AddressForm = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log("Datos del formulario:", form);
-    // Acá podrías guardar en contexto o mandar al backend
   };
 
   return (

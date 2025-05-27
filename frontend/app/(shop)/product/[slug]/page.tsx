@@ -84,7 +84,7 @@ export default function Page({ params }: Props) {
             />
             <button
               onClick={() => addBookToCartInStore()}
-              className=" cursor-pointer text-xs bg-green-700 text-white w-44 mb-4 text-nowrap h-10 rounded-sm transition-all shadow-sm font-semibold uppercase tracking-wide"
+              className=" cursor-pointer text-xs hover:bg-[#40D3E7] hover:text-[#002447] bg-[#002447] text-white w-44 mb-4 text-nowrap h-10 rounded-sm transition-all shadow-sm font-semibold uppercase tracking-wide"
             >
               Agregar al carrito
             </button>
@@ -95,8 +95,8 @@ export default function Page({ params }: Props) {
               </span>
             </div>
             <div className="flex justify-between items-center mt-auto pt-4 border-t border-gray-200">
-              <span className="text-lg font-bold text-emerald-600">
-                Precio: $
+              <span className="text-lg font-medium ">
+                Precio: $ {""}
                 {product.precio !== undefined &&
                   product.precio.toLocaleString("es-AR")}
               </span>

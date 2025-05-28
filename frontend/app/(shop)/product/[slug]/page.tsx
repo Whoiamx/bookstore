@@ -50,7 +50,6 @@ export default function Page({ params }: Props) {
       })
       .catch((err) => {
         console.error(err);
-        // Opcional: mostrar mensaje de error o redirigir
       });
   }, [slug, router]);
 

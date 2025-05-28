@@ -3,12 +3,32 @@ import { Books } from "../interfaces/books";
 
 interface StateStore {
   cart: Books[];
+  directionUser: {
+    name: string;
+    apellido: string;
+    direction: string;
+    ciudad: string;
+    provincia: string;
+    postal: number;
+    telefono: number;
+  };
+
   addToCart: (book: Books) => void;
   deleteBookCart: (book: Books) => void;
 }
 
 export const useBookStore = create<StateStore>((set) => ({
   cart: [],
+  directionUser: {
+    name: "",
+    apellido: "",
+    direction: "",
+    ciudad: "",
+    provincia: "",
+    postal: 0,
+    telefono: 0,
+  },
+
   addToCart: (book: Books) => {
     set((state) => {
       const existingBook = state.cart.find((item) => item.slug === book.slug);

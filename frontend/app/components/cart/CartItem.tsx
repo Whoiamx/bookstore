@@ -1,6 +1,7 @@
 // components/CartItem.tsx
 
 import { useBookStore } from "@/app/store/store";
+import Image from "next/image";
 
 interface CartItemProps {
   titulo: string;
@@ -42,9 +43,11 @@ export default function CartItem({
 
   return (
     <div className="flex flex-col md:flex-row items-start bg-white rounded-xl shadow-md p-4">
-      <img
+      <Image
         src={imagen}
         alt={titulo}
+        width={100}
+        height={100}
         className="w-full md:w-40 h-auto rounded-lg object-cover"
       />
       <div className="flex-1 md:ml-6 mt-4 md:mt-0">

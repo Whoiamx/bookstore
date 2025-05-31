@@ -41,6 +41,38 @@ app.get("/books", async (req, res) => {
   }
 });
 
+app.get("/book", async (req, res) => {
+  const { search } = req.query;
+
+  if (!search) {
+    return res.status(400).json({ error: "Parámetro 'search' requerido" });
+  }
+
+  try {
+    const libros = await prisma.libro.findFirst({
+      where: {
+        titulo: {
+          contains: search,
+          mode: "insensitive",
+        },
+      },
+    });
+
+    if (libros.length === 0) {
+      return res.status(404).json({ message: "No se encontraron libros" });
+    }
+
+    res.json(libros);
+  } catch (error) {
+    console.error("Error al buscar libros:", error);
+    res.status(500).json({ error: "Error al buscar libros" });
+  }
+});
+
+app.post("/user/adress", async (req, res) => {
+  res.send("Hola");
+});
+
 app.listen(port, () => {
   console.log(`Escuchando el puerto ${port}`);
 });

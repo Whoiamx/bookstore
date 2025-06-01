@@ -26,3 +26,13 @@ model Libro {
   cantidad    Int
   precio      Int
 }
+
+
+model User {
+  id String @id @default(uuid())
+  name String
+  email String @unique
+  emailVerified DateTime?
+  password String
+  image String?
+}

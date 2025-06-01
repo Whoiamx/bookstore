@@ -78,11 +78,6 @@ export const Navbar = () => {
           )}
         </div>
         <div className="flex gap-8 justify-around items-center">
-          <Link href={"/auth/login"}>
-            <FaUser
-              style={{ color: "white", fontSize: 25, cursor: "pointer" }}
-            />
-          </Link>
           <Link
             href={"https://api.whatsapp.com/send/?phone=5491163099115"}
             target="_blank"

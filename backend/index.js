@@ -69,20 +69,6 @@ app.get("/book", async (req, res) => {
   }
 });
 
-app.get("/users", async (req, res) => {
-  try {
-    const usuarios = await prisma.user.findMany();
-    res.json(usuarios);
-  } catch (error) {
-    console.error("Error al obtener libros:", error);
-    res.status(500).json({ error: "Error al obtener usuarios" });
-  }
-});
-
-app.post("/users/adress", async (req, res) => {
-  res.send("Hola");
-});
-
 app.listen(port, () => {
   console.log(`Escuchando el puerto ${port}`);
 });

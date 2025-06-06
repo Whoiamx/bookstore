@@ -25,7 +25,7 @@ async function createUser({ username, password }) {
   const existing = await prisma.user.findUnique({ where: { username } });
   if (existing) throw new Error("username ya creado");
 
-  const id = crypto.randomUUID(); // Genera UUID v4 random
+  const id = crypto.randomUUID();
 
   const hashedPassword = await bcrypt.hash(password, 10);
 

@@ -5,7 +5,7 @@ export default function () {
   return (
     <>
       <Navbar />
-      <div className="p-12">
+      <div className="p-24">
         <AddressForm />
       </div>
     </>

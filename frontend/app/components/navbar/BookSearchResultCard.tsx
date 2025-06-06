@@ -20,7 +20,7 @@ export const BookSearchResultCard = ({
         <div className="flex items-center bg-white text-black px-4 py-3 rounded-xl shadow-md space-x-4 border border-gray-300 hover:bg-gray-100 transition cursor-pointer">
           <div className="flex-shrink-0">
             <Image
-              src={`http://localhost:4848${image}`}
+              src={`http://localhost:3232${image}`}
               alt={`Portada de ${title}`}
               width={60}
               height={80}

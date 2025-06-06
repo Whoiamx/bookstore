@@ -17,7 +17,7 @@ interface DataInSearch {
   slug: string;
 }
 
-export const Navbar = () => {
+export const Navbar = ({ username }: any) => {
   const [searchInput, setSearchInput] = useState("");
   const [dataInSearch, setDataInSearch] = useState<DataInSearch | null>(null);
   console.log(dataInSearch);
@@ -78,6 +78,16 @@ export const Navbar = () => {
           )}
         </div>
         <div className="flex gap-8 justify-around items-center">
+          {username ? (
+            <div className=" text-center flex justify-center items-center gap-3">
+              <FaUser className="text-white " />
+              <p className="text-white font-semibold">
+                {" "}
+                Bienvenido {username.slice(0, 5)} 👋🏼
+              </p>
+            </div>
+          ) : null}
+
           <Link
             href={"https://api.whatsapp.com/send/?phone=5491163099115"}
             target="_blank"

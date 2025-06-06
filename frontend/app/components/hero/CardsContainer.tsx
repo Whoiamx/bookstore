@@ -12,7 +12,7 @@ export const CardsContainer = ({ titulo }: Props) => {
   const [dataBook, setDataBook] = useState<Books[]>([]);
 
   useEffect(() => {
-    fetch("http://localhost:4848/books?limit=8")
+    fetch("http://localhost:3232/books?limit=8")
       .then((response) => response.json())
       .then((data) => setDataBook(data))
       .catch((err) => console.log(err));
@@ -28,7 +28,7 @@ export const CardsContainer = ({ titulo }: Props) => {
             descripcion={item.descripcion}
             autor={item.autor}
             genero={item.genero}
-            imagen={`http://localhost:4848${item.imagen}`}
+            imagen={`http://localhost:3232${item.imagen}`}
             slug={item.slug}
             precio={item.precio}
             cantidad={item.cantidad}

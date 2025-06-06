@@ -2,7 +2,6 @@
 
 import { useState, ChangeEvent, FormEvent } from "react";
 import { useRouter } from "next/navigation";
-
 import Link from "next/link";
 
 interface LoginForm {
@@ -17,7 +16,6 @@ export default function Login() {
   });
 
   const router = useRouter();
-
   const [error, setError] = useState<string>("");
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -31,17 +29,15 @@ export default function Login() {
       const res = await fetch("http://localhost:3232/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
+        credentials: "include", //
         body: JSON.stringify(form),
       });
 
-      console.log(res);
       if (res.ok) {
         router.push("/");
-      }
-
-      if (!res.ok) {
+      } else {
         const data = await res.json();
-        throw new Error(data.message || "Error en el login");
+        throw new Error(data.error || "Error en el login");
       }
     } catch (err: any) {
       setError(err.message || "Error desconocido");
@@ -84,7 +80,7 @@ export default function Login() {
       </form>
 
       <Link href="/auth/create-account">
-        <button className=" text-blue-600 ">¿No tenés cuenta? Crear una</button>
+        <button className="text-blue-600">¿No tenés cuenta? Crear una</button>
       </Link>
     </main>
   );

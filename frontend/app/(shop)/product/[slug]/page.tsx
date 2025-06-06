@@ -38,7 +38,7 @@ export default function Page({ params }: Props) {
   };
 
   useEffect(() => {
-    fetch("http://localhost:4848/books")
+    fetch("http://localhost:3232/books")
       .then((response) => response.json())
       .then((data: Books[]) => {
         const foundBook = data.find((book) => book.slug === slug);
@@ -62,7 +62,7 @@ export default function Page({ params }: Props) {
       <div className="container mx-auto px-4 py-8 max-w-4xl">
         <div className="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow flex flex-col md:flex-row">
           <Image
-            src={`http://localhost:4848${product.imagen}`}
+            src={`http://localhost:3232${product.imagen}`}
             width={400}
             height={400}
             alt={`Portada del libro ${product.titulo}`}

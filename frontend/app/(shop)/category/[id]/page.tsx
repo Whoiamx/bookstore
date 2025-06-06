@@ -1,9 +1,9 @@
 "use client";
-import { Footer } from "@/app/components/footer/Footer";
+
 import { BookCard } from "@/app/components/hero/BookCard";
 import { Navbar } from "@/app/components/navbar/Navbar";
 import { Books } from "@/app/interfaces/books";
-import { notFound } from "next/navigation";
+
 import { useEffect, useState } from "react";
 
 interface Props {
@@ -23,7 +23,7 @@ export default function ({ params }: Props) {
   );
 
   useEffect(() => {
-    fetch("http://localhost:4848/books", {})
+    fetch("http://localhost:3232/books", {})
       .then((response) => response.json())
       .then((data) => setFilterCategory(data))
       .catch((err) => console.log(err));
@@ -46,7 +46,7 @@ export default function ({ params }: Props) {
                 descripcion={item.descripcion}
                 genero={item.genero}
                 precio={item.precio}
-                imagen={`http://localhost:4848${item.imagen}`}
+                imagen={`http://localhost:3232${item.imagen}`}
               />
             ))}
           </div>

@@ -9,7 +9,7 @@ export default function AllPage() {
   const [allBooks, setAllBooks] = useState<Books[]>([]);
 
   useEffect(() => {
-    fetch("http://localhost:4848/books")
+    fetch("http://localhost:3232/books")
       .then((response) => response.json())
       .then((data) => setAllBooks(data))
       .catch((err) => console.log(err));
@@ -30,7 +30,7 @@ export default function AllPage() {
               descripcion={item.descripcion}
               autor={item.autor}
               genero={item.genero}
-              imagen={`http://localhost:4848${item.imagen}`}
+              imagen={`http://localhost:3232${item.imagen}`}
               slug={item.slug}
               precio={item.precio}
             />

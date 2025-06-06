@@ -81,9 +81,7 @@ export default function Login() {
       </form>
 
       <Link href="/auth/create-account">
-        <button className=" text-blue-600 underline">
-          ¿No tenés cuenta? Crear una
-        </button>
+        <button className=" text-blue-600 ">¿No tenés cuenta? Crear una</button>
       </Link>
     </main>
   );

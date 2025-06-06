@@ -96,7 +96,7 @@ export default function CreateAccount() {
         {error && <p className="text-red-500">{error}</p>}
       </form>
       <Link href="/auth/login">
-        <button className="mt-4 text-sm text-blue-600 underline">
+        <button className="mt-4 text-sm text-blue-600 ">
           ¿Ya tenés cuenta? Iniciar sesión
         </button>
       </Link>

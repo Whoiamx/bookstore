@@ -1,7 +1,8 @@
 "use client";
 
 import { useState, ChangeEvent, FormEvent } from "react";
-import { useRouter } from "next/navigation"; // o 'next/router' si usás Pages Router
+import { useRouter } from "next/navigation";
+
 import Link from "next/link";
 
 interface LoginForm {
@@ -10,12 +11,12 @@ interface LoginForm {
 }
 
 export default function Login() {
-  const router = useRouter();
-
   const [form, setForm] = useState<LoginForm>({
     username: "",
     password: "",
   });
+
+  const router = useRouter();
 
   const [error, setError] = useState<string>("");
 
@@ -27,19 +28,21 @@ export default function Login() {
     e.preventDefault();
 
     try {
-      const res = await fetch("/api/login", {
+      const res = await fetch("http://localhost:3232/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
       });
 
+      console.log(res);
+      if (res.ok) {
+        router.push("/");
+      }
+
       if (!res.ok) {
         const data = await res.json();
         throw new Error(data.message || "Error en el login");
       }
-
-      // Redirigís a home o dashboard
-      router.push("/dashboard");
     } catch (err: any) {
       setError(err.message || "Error desconocido");
     }

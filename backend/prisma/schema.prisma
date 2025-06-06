@@ -29,7 +29,7 @@ model Libro {
 
 
 model User {
-  id Int @id
+  id String @id
   username String @unique
   password String
 }

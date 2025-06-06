@@ -1,13 +1,15 @@
 const path = require("path");
 const express = require("express");
 const cors = require("cors");
-const { PrismaClient } = require("./src/generated/prisma");
+const { PrismaClient } = require("@prisma/client");
+const { createUser, loginUser } = require("./src/auth/auth");
 
 const app = express();
-const port = 4848;
+const port = 3232;
 
 const prisma = new PrismaClient();
 app.use(cors());
+app.use(express.json());
 app.use("/assets", express.static(path.join(__dirname, "src", "assets")));
 
 const shuffleArray = (array) => {
@@ -69,8 +71,26 @@ app.get("/book", async (req, res) => {
   }
 });
 
-app.post("/register", (req, res) => {});
-app.post("/login", (req, res) => {});
+app.post("/register", async (req, res) => {
+  const { username, password } = req.body;
+  try {
+    const userId = await createUser({ username, password });
+    res.status(201).json({ message: "Usuario creado", userId });
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+});
+
+app.post("/login", async (req, res) => {
+  console.log("🔍 Entró al endpoint /login");
+  const { username, password } = req.body;
+  try {
+    const user = await loginUser({ username, password });
+    res.status(200).json({ message: "Login exitoso", user });
+  } catch (err) {
+    res.status(401).json({ error: err.message });
+  }
+});
 
 app.listen(port, () => {
   console.log(`Escuchando el puerto ${port}`);

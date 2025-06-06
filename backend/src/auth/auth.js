@@ -1,6 +1,7 @@
 const { PrismaClient } = require("@prisma/client");
 const bcrypt = require("bcryptjs");
 const crypto = require("crypto");
+const { SALT_ROUNDS } = require("../../config");
 
 const prisma = new PrismaClient();
 
@@ -27,7 +28,7 @@ async function createUser({ username, password }) {
 
   const id = crypto.randomUUID();
 
-  const hashedPassword = await bcrypt.hash(password, 10);
+  const hashedPassword = await bcrypt.hash(password, SALT_ROUNDS);
 
   await prisma.user.create({
     data: { id, username, password: hashedPassword },

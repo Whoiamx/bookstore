@@ -1,15 +1,42 @@
 const path = require("path");
 const express = require("express");
 const cors = require("cors");
+const cookieParser = require("cookie-parser");
+const jwt = require("jsonwebtoken");
 const { PrismaClient } = require("@prisma/client");
 const { createUser, loginUser } = require("./src/auth/auth");
+const { PORTCONFIG, SECRET_JWT_KEY } = require("./config");
 
 const app = express();
-const port = 3232;
+const port = PORTCONFIG || 3232;
 
 const prisma = new PrismaClient();
-app.use(cors());
+
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+    credentials: true,
+  })
+);
+
+app.use(cookieParser());
+
 app.use(express.json());
+
+app.use((req, res, next) => {
+  const token = req.cookies["access-token"];
+  req.session = { user: null };
+
+  if (token) {
+    try {
+      const data = jwt.verify(token, SECRET_JWT_KEY);
+      req.session.user = data;
+    } catch (error) {}
+  }
+
+  next();
+});
+
 app.use("/assets", express.static(path.join(__dirname, "src", "assets")));
 
 const shuffleArray = (array) => {
@@ -21,25 +48,22 @@ const shuffleArray = (array) => {
 
 app.get("/books", async (req, res) => {
   const { query } = req;
-
   const limit = parseInt(query.limit);
 
-  if (limit) {
-    const librosLimit = await prisma.libro.findMany({
-      take: limit,
-    });
-
-    const randomBooks = shuffleArray(librosLimit);
-
-    res.json(randomBooks);
-  } else {
-    try {
+  try {
+    if (limit) {
+      const librosLimit = await prisma.libro.findMany({
+        take: limit,
+      });
+      const randomBooks = shuffleArray(librosLimit);
+      return res.json(randomBooks);
+    } else {
       const libros = await prisma.libro.findMany();
-      res.json(libros);
-    } catch (error) {
-      console.error("Error al obtener libros:", error);
-      res.status(500).json({ error: "Error al obtener libros" });
+      return res.json(libros);
     }
+  } catch (error) {
+    console.error("Error al obtener libros:", error);
+    return res.status(500).json({ error: "Error al obtener libros" });
   }
 });
 
@@ -51,7 +75,7 @@ app.get("/book", async (req, res) => {
   }
 
   try {
-    const libros = await prisma.libro.findFirst({
+    const libro = await prisma.libro.findFirst({
       where: {
         titulo: {
           contains: search,
@@ -60,19 +84,20 @@ app.get("/book", async (req, res) => {
       },
     });
 
-    if (libros.length === 0) {
+    if (!libro) {
       return res.status(404).json({ message: "No se encontraron libros" });
     }
 
-    res.json(libros);
+    return res.json(libro);
   } catch (error) {
     console.error("Error al buscar libros:", error);
-    res.status(500).json({ error: "Error al buscar libros" });
+    return res.status(500).json({ error: "Error al buscar libros" });
   }
 });
 
 app.post("/register", async (req, res) => {
   const { username, password } = req.body;
+
   try {
     const userId = await createUser({ username, password });
     res.status(201).json({ message: "Usuario creado", userId });
@@ -82,16 +107,48 @@ app.post("/register", async (req, res) => {
 });
 
 app.post("/login", async (req, res) => {
-  console.log("🔍 Entró al endpoint /login");
   const { username, password } = req.body;
+
   try {
     const user = await loginUser({ username, password });
-    res.status(200).json({ message: "Login exitoso", user });
+
+    const token = jwt.sign(
+      { id: user.id, username: user.username },
+      SECRET_JWT_KEY,
+      { expiresIn: "2h" }
+    );
+
+    res.cookie("access-token", token, {
+      httpOnly: true,
+      secure: false,
+      sameSite: "lax",
+      maxAge: 1000 * 60 * 60 * 2,
+    });
+
+    res.status(200).json({ message: "Login exitoso", user, token });
   } catch (err) {
     res.status(401).json({ error: err.message });
   }
 });
 
+app.post("/logout", (req, res) => {
+  res
+    .clearCookie("access-token")
+    .json({ message: "Deslogueado correctamente" });
+});
+
+app.post("/protected", (req, res) => {
+  const token = req.cookies["access-token"];
+  if (!token) return res.status(403).send("No autorizado");
+
+  try {
+    const data = jwt.verify(token, SECRET_JWT_KEY);
+    res.json({ message: "Acceso concedido", user: data });
+  } catch (error) {
+    res.status(403).send("No autorizado");
+  }
+});
+
 app.listen(port, () => {
-  console.log(`Escuchando el puerto ${port}`);
+  console.log(`Servidor escuchando en puerto ${port}`);
 });

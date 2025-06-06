@@ -28,3 +28,9 @@ model Libro {
 }
 
 
+model User {
+  id Int @id
+  username String @unique
+  password String
+}
+

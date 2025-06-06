@@ -69,6 +69,9 @@ app.get("/book", async (req, res) => {
   }
 });
 
+app.post("/register", (req, res) => {});
+app.post("/login", (req, res) => {});
+
 app.listen(port, () => {
   console.log(`Escuchando el puerto ${port}`);
 });

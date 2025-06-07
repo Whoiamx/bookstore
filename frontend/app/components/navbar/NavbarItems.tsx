@@ -3,7 +3,7 @@ import Link from "next/link";
 export const NavbarItems = () => {
   return (
     <nav className="bg-gray-200">
-      <ul className="flex flex-row sm:flex-row gap-4 sm:gap-5 text-gray-500 no-scrollbar whitespace-nowrap">
+      <ul className="flex flex-row sm:flex-row gap-4 sm:gap-5 text-gray-500 no-scrollbar whitespace-nowrap p-3">
         <li>
           <Link
             className="hover:text-black text-sm transition-colors"

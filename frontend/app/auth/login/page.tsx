@@ -75,12 +75,19 @@ export default function Login() {
         <button type="submit" className="bg-blue-500 text-white p-2 rounded">
           Iniciar sesión
         </button>
-
-        {error && <p className="text-red-500">{error}</p>}
+        <div className="p-2">
+          {error && (
+            <p className="font-medium text-red-500">
+              <i>{error}</i>
+            </p>
+          )}
+        </div>
       </form>
 
       <Link href="/auth/create-account">
-        <button className="text-blue-600">¿No tenés cuenta? Crear una</button>
+        <button className="p-2 text-blue-600 hover:cursor-pointer">
+          ¿No tenés cuenta? Crear una cuenta.
+        </button>
       </Link>
     </main>
   );

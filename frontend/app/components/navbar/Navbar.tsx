@@ -9,6 +9,7 @@ import { NavbarItems } from "./NavbarItems";
 import { LabelCounter } from "@/app/ui/LabelCounter";
 import { BookSearchResultCard } from "./BookSearchResultCard";
 import { useState, useEffect } from "react";
+import { LogOutPopUp } from "@/app/ui/LogOutPopUp";
 
 interface DataInSearch {
   titulo: string;
@@ -25,6 +26,11 @@ export const Navbar = ({ username }: NavbarProps) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchInput, setSearchInput] = useState("");
   const [dataInSearch, setDataInSearch] = useState<DataInSearch | null>(null);
+  const [showModalLogOut, setModalLogOut] = useState(false);
+
+  const handleClickUser = () => {
+    setModalLogOut((prevState) => !prevState);
+  };
 
   useEffect(() => {
     if (searchInput.trim() === "") {
@@ -46,9 +52,8 @@ export const Navbar = ({ username }: NavbarProps) => {
   }, [searchInput]);
 
   return (
-    <nav className="bg-[#002447] p-3">
-      <div className="container mx-auto flex items-center justify-between flex-wrap gap-4">
-        {/* Logo a la izquierda */}
+    <nav className="bg-[#002447] ">
+      <div className="container mx-auto flex items-center justify-between flex-wrap gap-4 p-2">
         <div className="flex items-center gap-2 flex-shrink-0 text-white">
           <Link href={"/"}>
             <h1 className="font-extrabold text-3xl cursor-pointer">
@@ -79,15 +84,22 @@ export const Navbar = ({ username }: NavbarProps) => {
           )}
         </div>
 
-        {/* Íconos + botón hamburguesa a la derecha */}
         <div className="flex items-center gap-6">
           <div className="flex gap-6 items-center text-white">
             {username && (
-              <div className="flex items-center gap-2 text-sm">
+              <div
+                onClick={() => handleClickUser()}
+                className="flex items-center gap-2 text-sm hover:cursor-pointer"
+              >
                 <FaUser />
                 <span>Bienvenido {username.slice(0, 5)} 👋🏼</span>
               </div>
             )}
+            <div>
+              {showModalLogOut ? (
+                <LogOutPopUp setModalLogOut={setModalLogOut} />
+              ) : null}
+            </div>
             <Link
               href="https://api.whatsapp.com/send/?phone=5491163099115"
               target="_blank"
@@ -115,7 +127,6 @@ export const Navbar = ({ username }: NavbarProps) => {
         </div>
       </div>
 
-      {/* NavbarItems desplegable */}
       <div className={`${menuOpen ? "block" : "hidden"} `}>
         <NavbarItems />
       </div>

@@ -5,9 +5,9 @@ import { Books, DirectionUser } from "../interfaces/books";
 interface StateStore {
   cart: Books[];
   directionUser: DirectionUser;
-
   addToCart: (book: Books) => void;
   deleteBookCart: (book: Books) => void;
+  addAddressUser: (data: DirectionUser) => void;
 }
 
 export const useBookStore = create<StateStore>()(
@@ -15,13 +15,14 @@ export const useBookStore = create<StateStore>()(
     (set) => ({
       cart: [],
       directionUser: {
-        name: "",
+        nombre: "",
         apellido: "",
-        direction: "",
+        direccion: "",
         ciudad: "",
         provincia: "",
-        postal: 0,
-        telefono: 0,
+        codigoPostal: "",
+        telefono: "",
+        email: "",
       },
 
       addToCart: (book: Books) => {
@@ -54,8 +55,17 @@ export const useBookStore = create<StateStore>()(
           return { cart: filterCart };
         });
       },
+
+      addAddressUser: (data: DirectionUser) => {
+        set((state) => ({
+          ...state,
+          directionUser: data,
+        }));
+      },
     }),
+
     {
+      name: "book-store",
       partialize: (state) => ({
         cart: state.cart,
         directionUser: state.directionUser,

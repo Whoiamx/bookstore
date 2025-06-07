@@ -9,6 +9,12 @@ const nextConfig: NextConfig = {
         port: "3232",
         pathname: "/assets/**",
       },
+      {
+        protocol: "http",
+        hostname: "localhost",
+        port: "4848",
+        pathname: "/assets/**",
+      },
     ],
   },
 };

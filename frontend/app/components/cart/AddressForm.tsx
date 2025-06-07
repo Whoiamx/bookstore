@@ -1,11 +1,15 @@
 "use client";
+import { DirectionUser } from "@/app/interfaces/books";
+import { useBookStore } from "@/app/store/store";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export const AddressForm = () => {
   const router = useRouter();
 
-  const [form, setForm] = useState({
+  const setAddressUser = useBookStore((state) => state.addAddressUser);
+
+  const [form, setForm] = useState<DirectionUser>({
     nombre: "",
     apellido: "",
     direccion: "",
@@ -13,6 +17,7 @@ export const AddressForm = () => {
     provincia: "",
     codigoPostal: "",
     telefono: "",
+    email: "",
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -23,8 +28,8 @@ export const AddressForm = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log("Datos del formulario:", form);
+    setAddressUser(form);
 
-    // Aquí podrías validar o enviar datos a un backend
     router.push("/checkout");
   };
 
@@ -105,7 +110,15 @@ export const AddressForm = () => {
         className="p-3 border rounded-md w-full"
         required
       />
-
+      <input
+        type="email"
+        name="email"
+        placeholder="Correo electronico"
+        value={form.email}
+        onChange={handleChange}
+        className="p-3 border rounded-md w-full"
+        required
+      />
       <button
         type="submit"
         className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded transition"

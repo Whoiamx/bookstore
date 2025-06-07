@@ -23,11 +23,12 @@ export interface Producto {
 }
 
 export interface DirectionUser {
-  name: string;
+  nombre: string;
   apellido: string;
-  direction: string;
+  direccion: string;
   ciudad: string;
   provincia: string;
-  postal: number;
-  telefono: number;
+  codigoPostal: string;
+  telefono: string;
+  email: string;
 }

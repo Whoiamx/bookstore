@@ -1,14 +1,14 @@
 "use client";
+
 import Image from "next/image";
-import { NavbarItems } from "./NavbarItems";
-import { FaUser } from "react-icons/fa";
+import Link from "next/link";
+import { FaUser, FaBars, FaTimes } from "react-icons/fa";
 import { BsWhatsapp } from "react-icons/bs";
 import { LuShoppingCart } from "react-icons/lu";
-import Link from "next/link";
-
+import { NavbarItems } from "./NavbarItems";
 import { LabelCounter } from "@/app/ui/LabelCounter";
-import { useEffect, useState } from "react";
 import { BookSearchResultCard } from "./BookSearchResultCard";
+import { useState, useEffect } from "react";
 
 interface DataInSearch {
   titulo: string;
@@ -17,10 +17,14 @@ interface DataInSearch {
   slug: string;
 }
 
-export const Navbar = ({ username }: any) => {
+interface NavbarProps {
+  username?: string;
+}
+
+export const Navbar = ({ username }: NavbarProps) => {
+  const [menuOpen, setMenuOpen] = useState(false);
   const [searchInput, setSearchInput] = useState("");
   const [dataInSearch, setDataInSearch] = useState<DataInSearch | null>(null);
-  console.log(dataInSearch);
 
   useEffect(() => {
     if (searchInput.trim() === "") {
@@ -29,45 +33,42 @@ export const Navbar = ({ username }: any) => {
     }
 
     const delayDebounce = setTimeout(() => {
-      fetch(`http://localhost:4848/book?search=${searchInput}`)
-        .then((response) => response.json())
+      fetch(`http://localhost:3232/book?search=${searchInput}`)
+        .then((res) => res.json())
         .then((data) => {
-          if (data && data.titulo) {
-            setDataInSearch(data);
-          } else {
-            setDataInSearch(null);
-          }
+          if (data && data.titulo) setDataInSearch(data);
+          else setDataInSearch(null);
         })
-        .catch((err) => {
-          console.log(err);
-          setDataInSearch(null);
-        });
-    }, 500); // debounce de 500ms para no saturar el backend
+        .catch(() => setDataInSearch(null));
+    }, 500);
 
     return () => clearTimeout(delayDebounce);
   }, [searchInput]);
 
   return (
-    <>
-      <div className="relative flex items-center p-3 justify-around bg-[#002447]">
-        <div className="flex items-center justify-center gap-2">
+    <nav className="bg-[#002447] p-3">
+      <div className="container mx-auto flex items-center justify-between flex-wrap gap-4">
+        {/* Logo a la izquierda */}
+        <div className="flex items-center gap-2 flex-shrink-0 text-white">
           <Link href={"/"}>
-            <h1 className=" text-white font-extrabold text-3xl">
+            <h1 className="font-extrabold text-3xl cursor-pointer">
               Book<span className="text-blue-300">S</span>tore
             </h1>
           </Link>
           <Image src="/libros.png" alt="logo" width={50} height={50} />
         </div>
-        <div className="relative w-[300px]">
+
+        {/* Input búsqueda - centro, flexible */}
+        <div className="relative flex-grow max-w-md w-full">
           <input
-            className="bg-white rounded-b-sm p-2 w-full h-10"
             type="search"
             placeholder="Busca tu libro favorito..."
+            className="w-full p-2 rounded-b-sm text-gray-900 bg-white"
             value={searchInput}
-            onChange={(event) => setSearchInput(event.target.value)}
+            onChange={(e) => setSearchInput(e.target.value)}
           />
           {dataInSearch && (
-            <div className="absolute top-full left-0 w-full z-50 mt-2">
+            <div className="absolute top-full left-0 w-full z-50 mt-2 bg-white rounded shadow-lg max-h-60 overflow-auto">
               <BookSearchResultCard
                 title={dataInSearch.titulo}
                 price={dataInSearch.precio}
@@ -77,38 +78,47 @@ export const Navbar = ({ username }: any) => {
             </div>
           )}
         </div>
-        <div className="flex gap-8 justify-around items-center">
-          {username ? (
-            <div className=" text-center flex justify-center items-center gap-3">
-              <FaUser className="text-white " />
-              <p className="text-white font-semibold">
-                {" "}
-                Bienvenido {username.slice(0, 5)} 👋🏼
-              </p>
-            </div>
-          ) : null}
 
-          <Link
-            href={"https://api.whatsapp.com/send/?phone=5491163099115"}
-            target="_blank"
-          >
-            <BsWhatsapp
-              style={{ color: "white", fontSize: 25, cursor: "pointer" }}
-            />
-          </Link>
-          <div className="flex gap-3 justify-center items-center">
-            <Link href={"/cart"}>
-              <LuShoppingCart
-                style={{ color: "white", fontSize: 25, cursor: "pointer" }}
-              />
+        {/* Íconos + botón hamburguesa a la derecha */}
+        <div className="flex items-center gap-6">
+          <div className="flex gap-6 items-center text-white">
+            {username && (
+              <div className="flex items-center gap-2 text-sm">
+                <FaUser />
+                <span>Bienvenido {username.slice(0, 5)} 👋🏼</span>
+              </div>
+            )}
+            <Link
+              href="https://api.whatsapp.com/send/?phone=5491163099115"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-blue-400"
+            >
+              <BsWhatsapp size={25} />
             </Link>
-            <LabelCounter />
+            <Link
+              href={"/cart"}
+              className="flex gap-2 items-center hover:text-blue-400"
+            >
+              <LuShoppingCart size={25} />
+              <LabelCounter />
+            </Link>
           </div>
+
+          <button
+            onClick={() => setMenuOpen(!menuOpen)}
+            className="text-white focus:outline-none"
+            aria-label="Toggle menu"
+          >
+            {menuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
+          </button>
         </div>
       </div>
-      <div>
+
+      {/* NavbarItems desplegable */}
+      <div className={`${menuOpen ? "block" : "hidden"} `}>
         <NavbarItems />
       </div>
-    </>
+    </nav>
   );
 };

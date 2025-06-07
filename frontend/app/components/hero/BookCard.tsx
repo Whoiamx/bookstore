@@ -71,9 +71,9 @@ export const BookCard = ({
 
       <div className="bg-white shadow-lg rounded-2xl overflow-hidden w-72 hover:shadow-xl transition-shadow duration-300 flex flex-col">
         <Link
-          className="hover:opacity-90 transition-opacity"
           href={`/product/${slug}`}
           target="_blank"
+          className="hover:opacity-90 transition-opacity"
         >
           <Image
             src={imagen}
@@ -91,9 +91,9 @@ export const BookCard = ({
             </span>
 
             <Link
-              className="text-lg font-bold text-gray-800 hover:text-blue-500 transition-colors block"
               href={`/product/${slug}`}
               target="_blank"
+              className="text-lg font-bold text-gray-800 hover:text-blue-500 transition-colors block"
             >
               {titulo}
             </Link>

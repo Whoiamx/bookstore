@@ -1,8 +1,10 @@
 "use client";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export const AddressForm = () => {
+  const router = useRouter();
+
   const [form, setForm] = useState({
     nombre: "",
     apellido: "",
@@ -21,16 +23,19 @@ export const AddressForm = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log("Datos del formulario:", form);
+
+    // Aquí podrías validar o enviar datos a un backend
+    router.push("/checkout");
   };
 
   return (
     <form
       onSubmit={handleSubmit}
-      className="max-w-2xl mx-auto p-6 bg-white rounded-lg shadow space-y-4"
+      className="w-full max-w-xl mx-auto p-4 sm:p-6 bg-white rounded-lg shadow space-y-4"
     >
-      <h2 className="text-2xl font-bold mb-4">Dirección de envío</h2>
+      <h2 className="text-2xl font-bold mb-2 sm:mb-4">Dirección de envío</h2>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div className="flex flex-col sm:flex-row gap-4">
         <input
           type="text"
           name="nombre"
@@ -61,7 +66,7 @@ export const AddressForm = () => {
         required
       />
 
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+      <div className="flex flex-col sm:flex-row gap-4">
         <input
           type="text"
           name="ciudad"
@@ -101,11 +106,12 @@ export const AddressForm = () => {
         required
       />
 
-      <Link href="/checkout">
-        <button className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded transition">
-          Terminar la compra
-        </button>
-      </Link>
+      <button
+        type="submit"
+        className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded transition"
+      >
+        Terminar la compra
+      </button>
     </form>
   );
 };

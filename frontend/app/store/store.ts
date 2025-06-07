@@ -56,7 +56,6 @@ export const useBookStore = create<StateStore>()(
       },
     }),
     {
-      name: "book-store", // Nombre de la clave en localStorage
       partialize: (state) => ({
         cart: state.cart,
         directionUser: state.directionUser,

@@ -1,7 +1,6 @@
 import { Producto } from "@/app/interfaces/books";
 import CartItem from "./CartItem";
 import Link from "next/link";
-// ajustá el path si lo definiste en otro lado
 
 interface Props {
   productos: Producto[];
@@ -24,7 +23,7 @@ export const CartContainer = ({ productos }: Props) => {
       <div className="w-full md:w-[350px] bg-gray-100 p-6 rounded-lg shadow-md h-fit">
         <h2 className="text-xl font-semibold mb-4">Resumen de tu orden</h2>
 
-        <div className="space-y-3 text-sm ">
+        <div className="space-y-4 text-sm">
           {productos.map((item, i) => (
             <div
               key={i}
@@ -32,15 +31,15 @@ export const CartContainer = ({ productos }: Props) => {
             >
               <div>
                 <p className="font-medium">{item.titulo}</p>
-                <p className="text-gray-500 text-xs pt-2">
+                <p className="text-gray-500 text-xs pt-1">
                   <i>Cantidad:</i> {item.cantidad}
                 </p>
               </div>
-              <div className="flex flex-col gap-2">
-                <p className="text-right text-xs ">
-                  ${item.precio?.toLocaleString()} x {item.cantidad} <br />
+              <div className="text-right">
+                <p className="text-xs">
+                  ${item.precio?.toLocaleString()} x {item.cantidad}
                 </p>
-                <span className="font-semibold ">
+                <span className="font-semibold text-sm">
                   ${(item.precio! * item.cantidad!).toLocaleString()}
                 </span>
               </div>
@@ -52,6 +51,7 @@ export const CartContainer = ({ productos }: Props) => {
           <span>Total:</span>
           <span>${total.toLocaleString()}</span>
         </div>
+
         <Link href="/checkout/address">
           <button className="mt-6 w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition">
             Finalizar compra

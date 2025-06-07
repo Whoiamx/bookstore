@@ -6,8 +6,8 @@ import { Navbar } from "./components/navbar/Navbar";
 import { jwtDecode } from "jwt-decode";
 
 export default async function Home() {
-  const cookieStore = cookies();
-  const token = await cookieStore.get("access-token")?.value;
+  const cookieStore = await cookies();
+  const token = cookieStore.get("access-token")?.value;
 
   if (!token) {
     redirect("/auth/login");

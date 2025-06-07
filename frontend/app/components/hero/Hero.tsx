@@ -23,9 +23,11 @@ export const Hero = () => {
         <div className="my-12">
           <InfoCards />
         </div>
+
         <div className="my-12">
           <BannerImages />
         </div>
+
         <div className="my-12">
           <CardsContainer titulo="Novedades" />
         </div>

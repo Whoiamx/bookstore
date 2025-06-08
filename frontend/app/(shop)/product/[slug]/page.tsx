@@ -10,12 +10,21 @@ import { Footer } from "@/app/components/footer/Footer";
 
 interface Props {
   params: {
-    slug: string; // <-- Aquí cambio a solo string
+    slug: string;
   };
 }
 
+export async function generateStaticParams() {
+  const response = await fetch("http://localhost:3232/books");
+  const data: Books[] = await response.json();
+
+  return data.map((book) => ({
+    slug: book.slug, // asegurate que sea string simple
+  }));
+}
+
 export default function Page({ params }: Props) {
-  const slug = params.slug; // ya es string seguro
+  const { slug } = params;
 
   const [product, setProduct] = useState<Books | null>(null);
   const [quantityToBuy, setQuantityToBuy] = useState(1);

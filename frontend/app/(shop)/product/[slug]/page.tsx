@@ -10,13 +10,12 @@ import { Footer } from "@/app/components/footer/Footer";
 
 interface Props {
   params: {
-    slug: string | string[];
+    slug: string; // <-- Aquí cambio a solo string
   };
 }
 
 export default function Page({ params }: Props) {
-  // Aseguramos que slug sea string (si es array, tomamos el primer elemento)
-  const slug = Array.isArray(params.slug) ? params.slug[0] : params.slug;
+  const slug = params.slug; // ya es string seguro
 
   const [product, setProduct] = useState<Books | null>(null);
   const [quantityToBuy, setQuantityToBuy] = useState(1);

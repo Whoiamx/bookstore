@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   title: "Book Store - Todos los libros en un solo lugar",
   description: "Tu libreria de confianza",
   icons: {
-    icon: "/icon.png",
+    icon: "/favicon.ico",
   },
 };
 

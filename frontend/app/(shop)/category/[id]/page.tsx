@@ -1,41 +1,36 @@
 "use client";
 
+import { useParams } from "next/navigation";
+import { useEffect, useState } from "react";
 import { Footer } from "@/app/components/footer/Footer";
 import { BookCard } from "@/app/components/hero/BookCard";
 import { Navbar } from "@/app/components/navbar/Navbar";
 import { Books } from "@/app/interfaces/books";
 
-import { useEffect, useState } from "react";
-
-interface Props {
-  params: {
-    id: string;
-  };
-}
-
-export default function CategoryPage({ params }: Props) {
-  const { id } = params;
+export default function CategoryPage() {
+  const params = useParams();
+  const idParam = params.id;
+  const id = Array.isArray(idParam) ? idParam[0] : idParam;
 
   const [filterCategory, setFilterCategory] = useState<Books[]>([]);
-  console.log(filterCategory);
-
-  const filterBooksCategory: Books[] = filterCategory.filter(
-    (book) => book.categoria === id
-  );
 
   useEffect(() => {
-    fetch("http://localhost:3232/books", {})
+    fetch("http://localhost:3232/books")
       .then((response) => response.json())
       .then((data) => setFilterCategory(data))
       .catch((err) => console.log(err));
-  }, []);
+  }, [id]);
+
+  const filterBooksCategory = filterCategory.filter(
+    (book) => book.categoria === id
+  );
 
   return (
     <>
       <Navbar />
       <div className="flex mt-7 flex-col justify-center items-center">
-        <h3 className=" text-center text-3xl font-semibold mb-8">
-          LIBROS DE {id.toUpperCase()}
+        <h3 className="text-center text-3xl font-semibold mb-8">
+          LIBROS DE {id?.toUpperCase()}
         </h3>
         <div className="flex flex-col gap-4">
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">

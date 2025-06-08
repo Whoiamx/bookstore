@@ -64,7 +64,7 @@ export const useBookStore = create<StateStore>()(
         }));
       },
       clearCart: () => {
-        set((state) => ({
+        set(() => ({
           cart: [],
         }));
       },

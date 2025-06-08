@@ -8,6 +8,7 @@ interface StateStore {
   addToCart: (book: Books) => void;
   deleteBookCart: (book: Books) => void;
   addAddressUser: (data: DirectionUser) => void;
+  clearCart: () => void;
 }
 
 export const useBookStore = create<StateStore>()(
@@ -60,6 +61,12 @@ export const useBookStore = create<StateStore>()(
         set((state) => ({
           ...state,
           directionUser: data,
+        }));
+      },
+      clearCart: () => {
+        set((state) => ({
+          ...state,
+          cart: [],
         }));
       },
     }),

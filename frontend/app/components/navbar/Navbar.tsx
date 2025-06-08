@@ -92,7 +92,7 @@ export const Navbar = ({ username }: NavbarProps) => {
                 className="flex items-center gap-2 text-sm hover:cursor-pointer"
               >
                 <FaUser />
-                <span>Bienvenido {username.slice(0, 5)} 👋🏼</span>
+                <span>Bienvenido {username} 👋🏼</span>
               </div>
             )}
             <div>

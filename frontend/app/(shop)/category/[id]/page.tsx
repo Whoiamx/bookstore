@@ -1,5 +1,6 @@
 "use client";
 
+import { Footer } from "@/app/components/footer/Footer";
 import { BookCard } from "@/app/components/hero/BookCard";
 import { Navbar } from "@/app/components/navbar/Navbar";
 import { Books } from "@/app/interfaces/books";
@@ -52,6 +53,7 @@ export default function ({ params }: Props) {
           </div>
         </div>
       </div>
+      {filterBooksCategory.length ? <Footer /> : null}
     </>
   );
 }

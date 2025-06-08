@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React, { useState } from "react";
 
 const ImageSlider = () => {
@@ -28,9 +29,11 @@ const ImageSlider = () => {
         ⬅
       </button>
 
-      <img
+      <Image
         src={images[currentIndex]}
         alt={`Imagen ${currentIndex + 1}`}
+        width={600}
+        height={600}
         className="w-full max-w-[1200px] h-[400px] sm:h-[500px] md:h-[550px] object-cover rounded-xl shadow-lg"
       />
 

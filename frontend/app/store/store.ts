@@ -65,7 +65,6 @@ export const useBookStore = create<StateStore>()(
       },
       clearCart: () => {
         set((state) => ({
-          ...state,
           cart: [],
         }));
       },

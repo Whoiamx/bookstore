@@ -6,6 +6,7 @@ import { Books } from "@/app/interfaces/books";
 import { Navbar } from "@/app/components/navbar/Navbar";
 import Image from "next/image";
 import { useBookStore } from "@/app/store/store";
+import { Footer } from "@/app/components/footer/Footer";
 
 interface Props {
   params: {
@@ -112,6 +113,7 @@ export default function Page({ params }: Props) {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 }

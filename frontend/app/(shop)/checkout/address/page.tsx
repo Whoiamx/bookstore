@@ -1,7 +1,7 @@
 import { AddressForm } from "@/app/components/cart/AddressForm";
 import { Navbar } from "@/app/components/navbar/Navbar";
 
-export default function () {
+export default function AddressPage() {
   return (
     <>
       <Navbar />

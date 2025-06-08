@@ -1,10 +1,10 @@
 interface Props {
-  setModalLogOut: any;
+  setModalLogOut: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export const LogOutPopUp = ({ setModalLogOut }: Props) => {
   const handleLogOut = async () => {
-    const request = await fetch("http://localhost:3232/logout", {
+    await fetch("http://localhost:3232/logout", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       credentials: "include", //

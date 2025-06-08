@@ -39,8 +39,12 @@ export default function Login() {
         const data = await res.json();
         throw new Error(data.error || "Error en el login");
       }
-    } catch (err: any) {
-      setError(err.message || "Error desconocido");
+    } catch (err) {
+      if (err instanceof Error) {
+        setError(err.message);
+      } else {
+        setError("Error desconocido");
+      }
     }
   };
 

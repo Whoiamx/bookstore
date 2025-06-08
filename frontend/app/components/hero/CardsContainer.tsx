@@ -25,8 +25,12 @@ export const CardsContainer = ({ titulo }: Props) => {
         }
         const data = await response.json();
         setDataBook(data);
-      } catch (err: any) {
-        setError(err.message || "Error desconocido");
+      } catch (err) {
+        if (err instanceof Error) {
+          setError(err.message);
+        } else {
+          setError("Error desconocido");
+        }
       } finally {
         setLoading(false);
       }

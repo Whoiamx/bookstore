@@ -1,5 +1,5 @@
 import NotFoundPage from "@/app/ui/NotFound";
 
-export default function () {
+export default function NotFound() {
   return <NotFoundPage />;
 }

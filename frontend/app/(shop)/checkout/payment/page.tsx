@@ -6,7 +6,6 @@ import { useBookStore } from "@/app/store/store";
 import { ModalConfirmation } from "@/app/ui/ModalConfirmation";
 
 export default function PaymentPage() {
-  const router = useRouter();
   const cartItems = useBookStore((state) => state.cart);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [paymentDone, setPaymentDone] = useState(false);

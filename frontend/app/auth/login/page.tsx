@@ -45,8 +45,11 @@ export default function Login() {
   };
 
   return (
-    <main className="flex flex-col items-center justify-center min-h-screen p-4">
-      <h1 className="text-2xl font-bold mb-4">Iniciar Sesión</h1>
+    <main className="flex flex-col items-center justify-center min-h-screen gap-14 p-4">
+      <p className=" text-6xl font-extrabold">
+        Book<span className="text-blue-600">S</span>tore
+      </p>
+      <h1 className="text-2xl font-medium mb-4">Iniciar Sesión</h1>
 
       <form
         onSubmit={handleSubmit}

@@ -10,12 +10,14 @@ import { Footer } from "@/app/components/footer/Footer";
 
 interface Props {
   params: {
-    slug: string;
+    slug: string | string[];
   };
 }
 
 export default function Page({ params }: Props) {
-  const { slug } = params;
+  // Aseguramos que slug sea string (si es array, tomamos el primer elemento)
+  const slug = Array.isArray(params.slug) ? params.slug[0] : params.slug;
+
   const [product, setProduct] = useState<Books | null>(null);
   const [quantityToBuy, setQuantityToBuy] = useState(1);
   const router = useRouter();
@@ -23,22 +25,25 @@ export default function Page({ params }: Props) {
   const addBookToCart = useBookStore((state) => state.addToCart);
 
   const addBookToCartInStore = () => {
+    if (!product) return;
+
     const bookToAdd: Books = {
-      titulo: product!.titulo!,
-      autor: product!.autor!,
-      descripcion: product!.descripcion!,
-      genero: product!.genero!,
-      slug: product!.slug!,
-      imagen: product!.imagen!,
-      precio: product!.precio!,
+      titulo: product.titulo,
+      autor: product.autor,
+      descripcion: product.descripcion,
+      genero: product.genero,
+      slug: product.slug,
+      imagen: product.imagen,
+      precio: product.precio,
       cantidad: quantityToBuy,
     };
 
-    console.log(bookToAdd.cantidad);
     addBookToCart(bookToAdd);
   };
 
   useEffect(() => {
+    if (!slug) return;
+
     fetch("http://localhost:3232/books")
       .then((response) => response.json())
       .then((data: Books[]) => {
@@ -81,9 +86,10 @@ export default function Page({ params }: Props) {
               min={1}
               type="number"
               onChange={(event) => setQuantityToBuy(Number(event.target.value))}
+              value={quantityToBuy}
             />
             <button
-              onClick={() => addBookToCartInStore()}
+              onClick={addBookToCartInStore}
               className=" cursor-pointer text-xs hover:bg-[#40D3E7] hover:text-[#002447] bg-[#002447] text-white w-44 mb-4 text-nowrap h-10 rounded-sm transition-all shadow-sm font-semibold uppercase tracking-wide"
             >
               Agregar al carrito

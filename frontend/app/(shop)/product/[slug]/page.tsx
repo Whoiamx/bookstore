@@ -1,5 +1,5 @@
-// @ts-nocheck
 /* eslint-disable @typescript-eslint/ban-ts-comment */
+// @ts-ignore
 
 import { Books } from "@/app/interfaces/books";
 import { Footer } from "@/app/components/footer/Footer";
@@ -12,16 +12,18 @@ export async function generateStaticParams() {
   return books.map((book) => ({ slug: book.slug }));
 }
 
-// Corregimos el tipado de params según Next.js 15
+// params es ahora un Promise según Next.js 15
 export default async function Page({
   params,
 }: {
-  params: { slug: string }; // Tipo CORRECTO para params
+  params: Promise<{ slug: string }>;
 }) {
+  const { slug } = await params;
+
   return (
     <>
       <Navbar />
-      <ClientProductDetail slug={params.slug} />
+      <ClientProductDetail slug={slug} />
       <Footer />
     </>
   );

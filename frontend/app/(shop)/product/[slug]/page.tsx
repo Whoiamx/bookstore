@@ -1,4 +1,3 @@
-import { Books } from "@/app/interfaces/books";
 import { Footer } from "@/app/components/footer/Footer";
 import { Navbar } from "@/app/components/navbar/Navbar";
 import ClientProductDetail from "@/app/components/ClientProductDetail";

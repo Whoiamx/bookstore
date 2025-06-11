@@ -15,6 +15,11 @@ const nextConfig: NextConfig = {
         port: "4848",
         pathname: "/assets/**",
       },
+      {
+        protocol: "https",
+        hostname: "bookstore-gxg7.onrender.com",
+        pathname: "/assets/**",
+      },
     ],
   },
 };

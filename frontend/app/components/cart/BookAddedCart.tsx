@@ -29,6 +29,7 @@ export default function BookAddedCard({
             width={64}
             height={64}
             className="rounded-md object-cover"
+            unoptimized
           />
         </div>
 

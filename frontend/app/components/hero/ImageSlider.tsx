@@ -35,6 +35,7 @@ const ImageSlider = () => {
         width={600}
         height={600}
         className="w-full max-w-[1200px] h-[400px] sm:h-[500px] md:h-[550px] object-cover rounded-xl shadow-lg"
+        unoptimized
       />
 
       <button

@@ -6,7 +6,7 @@ const nextConfig = {
         hostname: "bookstore-gxg7.onrender.com",
         pathname: "/assets/**",
       },
-      // Mantener localhost para dev si querés
+
       {
         protocol: "http",
         hostname: "localhost",

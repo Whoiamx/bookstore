@@ -23,6 +23,7 @@ export const Promos = () => {
             width={400}
             height={400}
             className="w-16 h-16 rounded-full object-cover border border-gray-300 shadow-md"
+            unoptimized
           />
         ))}
       </div>

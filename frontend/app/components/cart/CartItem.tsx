@@ -46,6 +46,7 @@ export default function CartItem({
         width={100}
         height={100}
         className="w-full md:w-40 h-auto rounded-lg object-cover"
+        unoptimized
       />
       <div className="flex-1 md:ml-6 mt-4 md:mt-0 space-y-2">
         <h2 className="text-xl font-semibold">{titulo}</h2>

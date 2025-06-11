@@ -17,7 +17,7 @@ export default function ClientProductDetail({ slug }: Props) {
   const addToCart = useBookStore((state) => state.addToCart);
 
   useEffect(() => {
-    fetch("http://localhost:3232/books")
+    fetch("https://bookstore-gxg7.onrender.com/books")
       .then((res) => res.json())
       .then((data: Books[]) => {
         const found = data.find((b) => b.slug === slug);
@@ -38,7 +38,7 @@ export default function ClientProductDetail({ slug }: Props) {
     <main className="container mx-auto px-4 py-8 max-w-4xl">
       <div className="flex flex-col md:flex-row bg-white rounded shadow-md overflow-hidden">
         <Image
-          src={`http://localhost:3232${book.imagen}`}
+          src={`https://bookstore-gxg7.onrender.com${book.imagen}`}
           alt={`Portada del libro ${book.titulo}`}
           width={400}
           height={400}

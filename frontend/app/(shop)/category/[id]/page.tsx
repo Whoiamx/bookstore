@@ -15,7 +15,7 @@ export default function CategoryPage() {
   const [filterCategory, setFilterCategory] = useState<Books[]>([]);
 
   useEffect(() => {
-    fetch("http://localhost:3232/books")
+    fetch("https://bookstore-gxg7.onrender.com/books")
       .then((response) => response.json())
       .then((data) => setFilterCategory(data))
       .catch((err) => console.log(err));
@@ -42,7 +42,7 @@ export default function CategoryPage() {
                 descripcion={item.descripcion}
                 genero={item.genero}
                 precio={item.precio}
-                imagen={`http://localhost:3232${item.imagen}`}
+                imagen={`https://bookstore-gxg7.onrender.com${item.imagen}`}
               />
             ))}
           </div>

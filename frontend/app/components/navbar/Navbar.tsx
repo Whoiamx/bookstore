@@ -39,7 +39,7 @@ export const Navbar = ({ username }: NavbarProps) => {
     }
 
     const delayDebounce = setTimeout(() => {
-      fetch(`http://localhost:3232/book?search=${searchInput}`)
+      fetch(`https://bookstore-gxg7.onrender.com/book?search=${searchInput}`)
         .then((res) => res.json())
         .then((data) => {
           if (data && data.titulo) setDataInSearch(data);

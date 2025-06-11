@@ -19,7 +19,9 @@ export const CardsContainer = ({ titulo }: Props) => {
         setLoading(true);
         setError(null);
 
-        const response = await fetch("http://localhost:3232/books?limit=8");
+        const response = await fetch(
+          "https://bookstore-gxg7.onrender.com/books?limit=8"
+        );
         if (!response.ok) {
           throw new Error(`Error en la petición: ${response.status}`);
         }
@@ -55,7 +57,7 @@ export const CardsContainer = ({ titulo }: Props) => {
               descripcion={item.descripcion}
               autor={item.autor}
               genero={item.genero}
-              imagen={`http://localhost:3232${item.imagen}`}
+              imagen={`https://bookstore-gxg7.onrender.com${item.imagen}`}
               slug={item.slug}
               precio={item.precio}
               cantidad={item.cantidad}

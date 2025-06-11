@@ -4,7 +4,7 @@ interface Props {
 
 export const LogOutPopUp = ({ setModalLogOut }: Props) => {
   const handleLogOut = async () => {
-    await fetch("http://localhost:3232/logout", {
+    await fetch("https://bookstore-gxg7.onrender.com/logout", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       credentials: "include", //

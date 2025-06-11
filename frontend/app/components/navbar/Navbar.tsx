@@ -63,7 +63,6 @@ export const Navbar = ({ username }: NavbarProps) => {
           <Image src="/libros.png" alt="logo" width={50} height={50} />
         </div>
 
-        {/* Input búsqueda - centro, flexible */}
         <div className="relative flex-grow max-w-md w-full">
           <input
             type="search"

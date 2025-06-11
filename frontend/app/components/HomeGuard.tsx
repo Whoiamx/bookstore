@@ -3,29 +3,34 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
-export default function HomeGuard({ children }: { children: React.ReactNode }) {
+export default function HomeGuard({
+  children,
+}: {
+  children: (username: string) => React.ReactNode;
+}) {
   const router = useRouter();
   const [checking, setChecking] = useState(true);
+  const [username, setUsername] = useState<string>("");
 
   useEffect(() => {
     fetch("https://bookstore-gxg7.onrender.com/protected", {
       method: "POST",
-      credentials: "include", // 👈 importante para cookies
+      credentials: "include",
     })
       .then((res) => {
         if (!res.ok) throw new Error("Unauthorized");
         return res.json();
       })
       .then((data) => {
-        console.log("Sesión válida", data);
-        setChecking(false); // 👈 CAMBIÁ ESTO
+        setUsername(data.username);
+        setChecking(false);
       })
       .catch(() => {
-        console.warn("Sesión inválida");
         router.replace("/auth/login");
       });
   }, []);
 
-  if (checking) return <div>Cargando sesión...</div>; // o un loader
-  return <>{children}</>;
+  if (checking) return <div>Cargando sesión...</div>;
+
+  return <>{children(username)}</>; // 👈 Le pasás username como prop
 }

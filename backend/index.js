@@ -125,7 +125,10 @@ app.post("/login", async (req, res) => {
       maxAge: 1000 * 60 * 60 * 2,
     });
 
-    return res.json({ message: "Login exitoso" });
+    return res.json({
+      message: "Login exitoso",
+      username: user.username,
+    });
   } catch (err) {
     return res.status(401).json({ error: err.message });
   }
@@ -142,8 +145,14 @@ app.post("/logout", (_req, res) => {
 });
 
 app.post("/protected", (req, res) => {
+  const user = req.user;
   if (!req.session.user) return res.sendStatus(403);
-  return res.json({ ok: true, user: req.session.user });
+  return res.json({
+    ok: true,
+    user: req.session.user,
+    message: "Sesión válida",
+    username: user.username,
+  });
 });
 
 app.listen(port, () => {

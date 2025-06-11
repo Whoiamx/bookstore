@@ -1,7 +1,9 @@
 const { PrismaClient } = require("@prisma/client");
 const fs = require("fs/promises");
 const path = require("path");
+const dotenv = require("dotenv");
 
+dotenv.config();
 const prisma = new PrismaClient();
 
 async function main() {

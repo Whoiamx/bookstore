@@ -85,15 +85,13 @@ export const Navbar = ({ username }: NavbarProps) => {
 
         <div className="flex items-center gap-6">
           <div className="flex gap-6 items-center text-white">
-            {username && (
-              <div
-                onClick={() => handleClickUser()}
-                className="flex items-center gap-2 text-sm hover:cursor-pointer"
-              >
-                <FaUser />
-                <span>Bienvenido {username} 👋🏼</span>
-              </div>
-            )}
+            <div
+              onClick={() => handleClickUser()}
+              className="flex items-center gap-2 text-sm hover:cursor-pointer"
+            >
+              <FaUser />
+            </div>
+
             <div>
               {showModalLogOut ? (
                 <LogOutPopUp setModalLogOut={setModalLogOut} />

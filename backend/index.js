@@ -130,8 +130,8 @@ app.post("/login", async (req, res) => {
 
     res.cookie("access-token", token, {
       httpOnly: true,
-      secure: true,
-      sameSite: "lax",
+      secure: process.env.NODE_ENV === "production", // true en Render
+      sameSite: "lax", // suficiente; no uses "none"
       maxAge: 1000 * 60 * 60 * 2,
     });
 

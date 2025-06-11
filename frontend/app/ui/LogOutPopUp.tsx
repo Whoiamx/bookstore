@@ -1,14 +1,29 @@
+import { useRouter } from "next/router";
+
 interface Props {
   setModalLogOut: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export const LogOutPopUp = ({ setModalLogOut }: Props) => {
+  const router = useRouter();
   const handleLogOut = async () => {
-    await fetch("https://bookstore-gxg7.onrender.com/logout", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      credentials: "include", //
-    });
+    try {
+      const res = await fetch("https://bookstore-gxg7.onrender.com/logout", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+      });
+
+      if (res.ok) {
+        setModalLogOut(false);
+
+        router.push("/auth/login");
+      } else {
+        console.error("Error cerrando sesión");
+      }
+    } catch (error) {
+      console.error("Error en logout:", error);
+    }
   };
 
   const handleCancelButton = () => {

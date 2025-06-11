@@ -51,11 +51,10 @@ export const Navbar = () => {
     <nav className="bg-[#002447] ">
       <div className="container mx-auto flex items-center justify-between flex-wrap gap-4 p-2">
         <div className="flex items-center gap-2 flex-shrink-0 text-white">
-          <Link href={"/"}>
-            <h1 className="font-extrabold text-3xl cursor-pointer">
-              Book<span className="text-blue-300">S</span>tore
-            </h1>
-          </Link>
+          <h1 className="font-extrabold text-3xl cursor-pointer">
+            Book<span className="text-blue-300">S</span>tore
+          </h1>
+
           <Image src="/libros.png" alt="logo" width={50} height={50} />
         </div>
 

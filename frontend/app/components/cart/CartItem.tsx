@@ -1,3 +1,4 @@
+"use client";
 import { useBookStore } from "@/app/store/store";
 import Image from "next/image";
 

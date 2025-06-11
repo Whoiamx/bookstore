@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, ChangeEvent, FormEvent } from "react";
-import { useRouter } from "next/navigation";
 import Link from "next/link";
 
 interface LoginForm {
@@ -15,7 +14,6 @@ export default function Login() {
     password: "",
   });
 
-  const router = useRouter();
   const [error, setError] = useState<string>("");
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -29,12 +27,13 @@ export default function Login() {
       const res = await fetch("https://bookstore-gxg7.onrender.com/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        credentials: "include", // para que envíe cookies
+        credentials: "include", // Para permitir cookies entre dominios
         body: JSON.stringify(form),
       });
 
       if (res.ok) {
-        router.push("/");
+        // 🔁 Esto es lo que arregla el problema: redirige completamente
+        window.location.href = "/";
       } else {
         const data = await res.json();
         throw new Error(data.error || "Error en el login");
@@ -82,6 +81,7 @@ export default function Login() {
         <button type="submit" className="bg-blue-500 text-white p-2 rounded">
           Iniciar sesión
         </button>
+
         <div className="p-2">
           {error && (
             <p className="font-medium text-red-500">

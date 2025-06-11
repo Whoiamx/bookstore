@@ -23,6 +23,7 @@ export const BookSearchResultCard = ({
             alt={`Portada de ${title}`}
             width={60}
             height={80}
+            unoptimized
           />
         </div>
         <div className="flex flex-col justify-center">

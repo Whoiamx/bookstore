@@ -43,6 +43,7 @@ export default function ClientProductDetail({ slug }: Props) {
           width={400}
           height={400}
           className="object-cover md:w-1/3 w-full"
+          unoptimized
         />
         <div className="p-6 flex flex-col flex-1">
           <h2 className="text-2xl font-bold mb-2">{book.titulo}</h2>

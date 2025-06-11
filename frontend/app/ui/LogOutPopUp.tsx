@@ -1,5 +1,6 @@
 "use client";
-import { useRouter } from "next/router";
+
+import { useRouter } from "next/navigation";
 
 interface Props {
   setModalLogOut: React.Dispatch<React.SetStateAction<boolean>>;

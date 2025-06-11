@@ -37,6 +37,7 @@ export default function CreateAccount() {
       const res = await fetch("https://bookstore-gxg7.onrender.com/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
+        credentials: "include",
         body: JSON.stringify({
           username: form.username,
           password: form.password,

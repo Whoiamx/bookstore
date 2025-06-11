@@ -29,7 +29,7 @@ export default function Login() {
       const res = await fetch("https://bookstore-gxg7.onrender.com/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        credentials: "include", //
+        credentials: "include", // para que envíe cookies
         body: JSON.stringify(form),
       });
 

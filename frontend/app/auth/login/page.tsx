@@ -2,6 +2,7 @@
 
 import { useState, ChangeEvent, FormEvent } from "react";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 interface LoginForm {
   username: string;
@@ -9,41 +10,39 @@ interface LoginForm {
 }
 
 export default function Login() {
-  const [form, setForm] = useState<LoginForm>({
-    username: "",
-    password: "",
-  });
+  const [form, setForm] = useState<LoginForm>({ username: "", password: "" });
+  const [error, setError] = useState("");
+  const router = useRouter();
 
-  const [error, setError] = useState<string>("");
-
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) =>
     setForm({ ...form, [e.target.name]: e.target.value });
-  };
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setError("");
 
     try {
-      const res = await fetch("https://bookstore-gxg7.onrender.com/login", {
+      const r = await fetch("https://bookstore-gxg7.onrender.com/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        credentials: "include", // Para permitir cookies entre dominios
+        credentials: "include",
         body: JSON.stringify(form),
       });
 
-      if (res.ok) {
-        // 🔁 Esto es lo que arregla el problema: redirige completamente
-        window.location.href = "/";
-      } else {
-        const data = await res.json();
-        throw new Error(data.error || "Error en el login");
+      if (!r.ok) {
+        const { error } = await r.json();
+        throw new Error(error ?? "Login failed");
       }
-    } catch (err) {
-      if (err instanceof Error) {
-        setError(err.message);
-      } else {
-        setError("Error desconocido");
-      }
+
+      const check = await fetch(
+        "https://bookstore-gxg7.onrender.com/protected",
+        { method: "POST", credentials: "include" }
+      );
+
+      if (check.ok) router.replace("/");
+      else throw new Error("La sesión no se estableció");
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : "Error desconocido");
     }
   };
 

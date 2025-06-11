@@ -6,50 +6,39 @@ const jwt = require("jsonwebtoken");
 const { PrismaClient } = require("@prisma/client");
 const { createUser, loginUser } = require("./src/auth/auth");
 const { PORTCONFIG, SECRET_JWT_KEY } = require("./config");
+
 const allowedOrigins = [
   "http://localhost:3000",
   "https://bookstore-eta-tawny.vercel.app",
 ];
 const app = express();
 const port = PORTCONFIG || 3232;
-
 const prisma = new PrismaClient();
 
 app.use(
   cors({
-    origin: function (origin, callback) {
-      const allowedOrigins = [
-        "https://bookstore-eta-tawny.vercel.app",
-        "http://localhost:3000",
-      ];
-      if (!origin || allowedOrigins.includes(origin)) {
-        return callback(null, true);
-      }
-      return callback(new Error("CORS no permitido"), false);
-    },
+    origin: allowedOrigins,
     credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
 
 app.use(cookieParser());
-
 app.use(express.json());
+app.use("/assets", express.static(path.join(__dirname, "src", "assets")));
 
-app.use((req, res, next) => {
+app.use((req, _res, next) => {
   const token = req.cookies["access-token"];
   req.session = { user: null };
 
   if (token) {
     try {
-      const data = jwt.verify(token, SECRET_JWT_KEY);
-      req.session.user = data;
-    } catch (error) {}
+      req.session.user = jwt.verify(token, SECRET_JWT_KEY);
+    } catch (_e) {}
   }
-
   next();
 });
-
-app.use("/assets", express.static(path.join(__dirname, "src", "assets")));
 
 const shuffleArray = (array) => {
   return array
@@ -119,10 +108,8 @@ app.post("/register", async (req, res) => {
 });
 
 app.post("/login", async (req, res) => {
-  const { username, password } = req.body;
-
   try {
-    const user = await loginUser({ username, password });
+    const user = await loginUser(req.body);
 
     const token = jwt.sign(
       { id: user.id, username: user.username },
@@ -130,36 +117,33 @@ app.post("/login", async (req, res) => {
       { expiresIn: "2h" }
     );
 
+    // 👇 SameSite ‘None’ + secure true → cookie cross-site
     res.cookie("access-token", token, {
       httpOnly: true,
-      secure: true,
-      sameSite: "lax", // "lax" funciona para redirecciones internas desde login
+      secure: true, // Render usa HTTPS
+      sameSite: "None", // necesario cross-site
       maxAge: 1000 * 60 * 60 * 2,
     });
 
-    res.status(200).json({ message: "Login exitoso", user, token });
+    return res.json({ message: "Login exitoso" });
   } catch (err) {
-    res.status(401).json({ error: err.message });
+    return res.status(401).json({ error: err.message });
   }
 });
 
-app.post("/logout", (req, res) => {
+app.post("/logout", (_req, res) => {
   res
-    .clearCookie("access-token")
-    .json({ message: "Deslogueado correctamente" });
+    .clearCookie("access-token", {
+      httpOnly: true,
+      secure: true,
+      sameSite: "None",
+    })
+    .json({ message: "Deslogueado" });
 });
 
 app.post("/protected", (req, res) => {
-  console.log("Cookies:", req.cookies);
-  const token = req.cookies["access-token"];
-  if (!token) return res.status(403).send("No autorizado");
-
-  try {
-    const data = jwt.verify(token, SECRET_JWT_KEY);
-    res.json({ message: "Acceso concedido", user: data });
-  } catch (error) {
-    res.status(403).send("No autorizado");
-  }
+  if (!req.session.user) return res.sendStatus(403);
+  return res.json({ ok: true, user: req.session.user });
 });
 
 app.listen(port, () => {

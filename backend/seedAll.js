@@ -4,6 +4,8 @@ const path = require("path");
 const dotenv = require("dotenv");
 
 dotenv.config({ path: "./.env" });
+console.log("DB URL:", process.env.DATABASE_URL);
+
 const prisma = new PrismaClient();
 
 async function main() {

@@ -6,7 +6,10 @@ const jwt = require("jsonwebtoken");
 const { PrismaClient } = require("@prisma/client");
 const { createUser, loginUser } = require("./src/auth/auth");
 const { PORTCONFIG, SECRET_JWT_KEY } = require("./config");
-
+const allowedOrigins = [
+  "http://localhost:3000",
+  "https://bookstore-eta-tawny.vercel.app",
+];
 const app = express();
 const port = PORTCONFIG || 3232;
 
@@ -14,7 +17,14 @@ const prisma = new PrismaClient();
 
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: function (origin, callback) {
+      if (!origin) return callback(null, true);
+      if (allowedOrigins.indexOf(origin) === -1) {
+        const msg = "El CORS no está permitido para este origen.";
+        return callback(new Error(msg), false);
+      }
+      return callback(null, true);
+    },
     credentials: true,
   })
 );

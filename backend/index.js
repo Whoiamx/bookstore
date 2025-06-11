@@ -18,12 +18,14 @@ const prisma = new PrismaClient();
 app.use(
   cors({
     origin: function (origin, callback) {
-      if (!origin) return callback(null, true);
-      if (allowedOrigins.indexOf(origin) === -1) {
-        const msg = "El CORS no está permitido para este origen.";
-        return callback(new Error(msg), false);
+      const allowedOrigins = [
+        "https://bookstore-eta-tawny.vercel.app",
+        "http://localhost:3000",
+      ];
+      if (!origin || allowedOrigins.includes(origin)) {
+        return callback(null, true);
       }
-      return callback(null, true);
+      return callback(new Error("CORS no permitido"), false);
     },
     credentials: true,
   })
@@ -130,8 +132,8 @@ app.post("/login", async (req, res) => {
 
     res.cookie("access-token", token, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production", // true en Render
-      sameSite: "lax", // suficiente; no uses "none"
+      secure: true,
+      sameSite: "lax", // "lax" funciona para redirecciones internas desde login
       maxAge: 1000 * 60 * 60 * 2,
     });
 
@@ -148,6 +150,7 @@ app.post("/logout", (req, res) => {
 });
 
 app.post("/protected", (req, res) => {
+  console.log("Cookies:", req.cookies);
   const token = req.cookies["access-token"];
   if (!token) return res.status(403).send("No autorizado");
 

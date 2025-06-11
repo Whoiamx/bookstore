@@ -1,4 +1,3 @@
-// app/components/auth/HomeGuard.tsx
 "use client";
 
 import { useEffect, useState } from "react";
@@ -11,16 +10,22 @@ export default function HomeGuard({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     fetch("https://bookstore-gxg7.onrender.com/protected", {
       method: "POST",
-      credentials: "include",
+      credentials: "include", // 👈 importante para cookies
     })
-      .then((r) => {
-        if (!r.ok) throw new Error();
-        return r.json();
+      .then((res) => {
+        if (!res.ok) throw new Error("Unauthorized");
+        return res.json();
       })
-      .then(() => setChecking(false))
-      .catch(() => router.replace("/auth/login"));
-  }, [router]);
+      .then((data) => {
+        console.log("Sesión válida", data);
+        setChecking(false); // 👈 CAMBIÁ ESTO
+      })
+      .catch(() => {
+        console.warn("Sesión inválida");
+        router.replace("/auth/login");
+      });
+  }, []);
 
-  if (checking) return null; // o un loader
+  if (checking) return <div>Cargando sesión...</div>; // o un loader
   return <>{children}</>;
 }

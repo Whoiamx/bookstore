@@ -1,26 +1,14 @@
-import { redirect } from "next/navigation";
 import { Hero } from "./components/hero/Hero";
-import { cookies } from "next/headers";
-
 import { Navbar } from "./components/navbar/Navbar";
-import { jwtDecode } from "jwt-decode";
 import { Footer } from "./components/footer/Footer";
+import HomeGuard from "./components/HomeGuard";
 
-export default async function Home() {
-  const cookieStore = await cookies();
-  const token = cookieStore.get("access-token")?.value;
-
-  if (!token) {
-    redirect("/auth/login");
-  }
-  const decoded = jwtDecode<{ id: string; username: string }>(token);
-  const username = decoded.username;
-
+export default function Home() {
   return (
-    <div>
-      <Navbar username={username} />
+    <HomeGuard>
+      <Navbar />
       <Hero />
       <Footer />
-    </div>
+    </HomeGuard>
   );
 }

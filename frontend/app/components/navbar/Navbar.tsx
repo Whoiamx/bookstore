@@ -18,11 +18,7 @@ interface DataInSearch {
   slug: string;
 }
 
-interface NavbarProps {
-  username?: string;
-}
-
-export const Navbar = ({ username }: NavbarProps) => {
+export const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchInput, setSearchInput] = useState("");
   const [dataInSearch, setDataInSearch] = useState<DataInSearch | null>(null);

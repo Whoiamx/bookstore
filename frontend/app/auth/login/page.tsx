@@ -2,12 +2,15 @@
 
 import { useState, ChangeEvent, FormEvent } from "react";
 import Link from "next/link";
-import { useRouter } from "next/router";
+
+import { useRouter } from "next/navigation";
 
 interface LoginForm {
   username: string;
   password: string;
 }
+
+export const dynamic = "force-dynamic";
 
 export default function Login() {
   const [form, setForm] = useState<LoginForm>({ username: "", password: "" });

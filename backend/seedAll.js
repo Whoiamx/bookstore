@@ -3,7 +3,7 @@ const fs = require("fs/promises");
 const path = require("path");
 const dotenv = require("dotenv");
 
-dotenv.config();
+dotenv.config({ path: "./.env" });
 const prisma = new PrismaClient();
 
 async function main() {

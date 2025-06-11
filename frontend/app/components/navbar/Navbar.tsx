@@ -89,7 +89,7 @@ export const Navbar = ({ username }: NavbarProps) => {
               onClick={() => handleClickUser()}
               className="flex items-center gap-2 text-sm hover:cursor-pointer"
             >
-              <FaUser />
+              <FaUser className="text-white" />
             </div>
 
             <div>
